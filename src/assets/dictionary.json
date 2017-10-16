@@ -1,0 +1,58 @@
+{
+  "local":{
+
+  },
+  "companhia":{
+
+  },
+  "dependencia":{
+
+  },
+  "tasks":{
+    "1": "Banho",
+    "2": "Escovação",
+    "3": "Vestir-se",
+
+    "4": "Almoço",
+    "5": "Jantar",
+    "6": "Lanche",
+
+    "7": "Televisão",
+    "8": "Atividade Física",
+    "9": "Jogos",
+    "10": "Atividade Religiosa",
+    "11": "Leitura",
+
+    "12": "Cozinhar",
+    "13": "ADM Remédios",
+    "14": "ADM Contas",
+    "15": "Estudo",
+
+    "16": "Terapias",
+    "17": "Banheiro",
+
+    "18": "Outros"
+  },
+  "categorias":[
+    {
+      "titulo": "Cuidados Pessoais",
+      "tasks":[1,2,3]
+    },
+    {
+      "titulo": "Alimentação",
+      "tasks":[3,4,5]
+    },
+    {
+      "titulo": "Lazer",
+      "tasks":[7,8,9,10,11]
+    },
+    {
+      "titulo": "Instrumentais",
+      "tasks":[12,13,14,15]
+    },
+    {
+      "titulo": "Outros",
+      "tasks":[18]
+    }
+  ]
+}

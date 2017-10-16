@@ -23,6 +23,7 @@ module.exports = function () {
     const iconsSrcFiles = `${srcDir}/images/${iconsFolderName}/*.svg`;
     const scriptsMainFile = 'app.js';
 
+
     return {
         srcDir,
         outputDir,
@@ -33,6 +34,7 @@ module.exports = function () {
         iconsFolderName,
         fontsSrcFiles: `${srcDir}/fonts/**/*.{eot,svg,ttf,woff,woff2}`,
         faviconFile: `${srcDir}/favicon.ico`,
+        assetsDir: `${srcDir}/assets/**/*`,
         scriptsMainFile,
         scriptsSrcFiles: `${srcDir}/js/**/*.js`,
         scriptsSrcDir: `${srcDir}/js`,

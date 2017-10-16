@@ -23,7 +23,8 @@ export default () => {
     return gulp
         .src([
             sharedPaths.fontsSrcFiles,
-            sharedPaths.faviconFile
+            sharedPaths.faviconFile,
+            sharedPaths.assetsDir
         ], {
 
             base: sharedPaths.srcDir

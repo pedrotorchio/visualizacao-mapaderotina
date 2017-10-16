@@ -3,10 +3,15 @@ import $ from 'jquery';
 export default class App{
   constructor(){}
 
-  onDoneLoading(){
+  onDoneLoading(callback){
+    $(()=>{
 
+      getTasks(callback);
+
+
+    });
   }
-  getTasks(){
-
+  ___getTasks(callback){
+    d3.json('');
   }
 }

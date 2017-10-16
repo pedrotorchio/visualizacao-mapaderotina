@@ -1,0 +1,21 @@
+### Formato dos dados
+cada pessoa possui um array de atividades, onde atividade é:
+{
+  "task": 1
+  "taskNome": "banho",
+  "inicio": "08:00",
+  "duracao": "30",
+  "local": 1,
+  "companhia": 1,
+  "simultanea": 1,
+  "dependencia": 0
+}
+
+task é a id da atividade, que deve condizer com o dicionario (Int)
+taskNome é o nome da atividade, para visualização. Pode ser omitido para exibir do dicionário (String)
+inicio é o horario de inicio da atividade (String := hh:mm)
+duracao da atividade (Int := Minutos)
+local da atividade, de acordo com o dicionário (Int)
+companhia é a presença de outra pessoa, além do cuidador, de acordo com o dicionário
+simultanea é se outra atividade ocorreu simultaneamente, de acordo com o dicionário
+dependência é o quão nescessário foi o auxílio/supervisão de outra pessoa na execuçao da atividade, de acordo com o dicionário
