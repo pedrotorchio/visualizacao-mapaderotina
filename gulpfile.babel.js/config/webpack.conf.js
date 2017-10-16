@@ -22,6 +22,7 @@ export default (() => {
     const vendorChunkFilename = 'libs';
 
     let config = {
+        target: 'web',
         cache: true,
         output: {
             filename: '[name].js'
@@ -50,7 +51,7 @@ export default (() => {
     }
 
     // Development extras
-    if (process.env.GULP_WEBPACK_DEV === 'true') {
+    if (process.env.GULP_WEBPACK_DEV === 'true' && false) {
         config.debug = true;
         config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
             name: `${vendorChunkFilename}`,

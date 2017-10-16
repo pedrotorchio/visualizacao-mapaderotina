@@ -1,13 +1,19 @@
-// Common
-@import "variables";
+// // Common
+// @import "variables";
+//
+//
+// // Base
+// @import "scaffolding";
+// @import "type";
+//
+//
+// // Modules
+// @import "components/buttons";
+// @import "components/images";
+// @import "components/lists";
 
 
-// Base
-@import "scaffolding";
-@import "type";
-
-
-// Modules
-@import "components/buttons";
-@import "components/images";
-@import "components/lists";
+svg.visualization{
+  margin: 0 auto;
+  display: block;
+}
