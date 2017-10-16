@@ -12,6 +12,8 @@ export default class App{
     });
   }
   ___getTasks(callback){
-    d3.json('');
+    d3.json('/assets/tasks-joão.json', (response)=>{
+      callback(response);
+    });
   }
 }

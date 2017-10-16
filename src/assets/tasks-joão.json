@@ -3,104 +3,122 @@
   "idade": 75,
 
   "tasks":[
-  {
-    "task": 1,
-    "inicio": "09:00",
-    "duracao": 20,
-    "local": 2,
-    "companhia": 0,
-    "dependencia": 3,
-    "simultanea": ""
-  },
-  {
-    "task": 2,
-    "inicio": "08:20",
-    "duracao": 10,
-    "local": 2,
-    "companhia": 0,
-    "dependencia": 3,
-    "simultanea": ""
-  },
-  {
-    "task": 3,
-    "inicio": "09:30",
-    "duracao": 10,
-    "local": 3,
-    "companhia": 0,
-    "dependencia": 3,
-    "simultanea": ""
-  },
-  {
-    "task": 19,
-    "inicio": "08:30",
-    "duracao": 30,
-    "local": 4,
-    "companhia": 0,
-    "dependencia": 2,
-    "simultanea": ""
-  },
-  {
-    "task": 4,
-    "inicio": "12:00",
-    "duracao": 30,
-    "local": 4,
-    "companhia": 0,
-    "dependencia": 2,
-    "simultanea": ""
-  },
-  {
-    "task": 5,
-    "inicio": "18:30",
-    "duracao": 30,
-    "local": 4,
-    "companhia": 0,
-    "dependencia": 2,
-    "simultanea": ""
-  },
-  {
-    "task": 6,
-    "inicio": "15:00",
-    "duracao": 30,
-    "local": 4,
-    "companhia": 0,
-    "dependencia": 2,
-    "simultanea": ""
-  },
-  {
-    "task": 7,
-    "inicio": "9:45",
-    "duracao": 135,
-    "local": 4,
-    "companhia": 0,
-    "dependencia": 2,
-    "simultanea": ""
-  },
-  {
-    "task": 9,
-    "inicio": "15:30",
-    "duracao": 120,
-    "local": 4,
-    "companhia": 0,
-    "dependencia": 2,
-    "simultanea": ""
-  },
-  {
-    "task": 16,
-    "inicio": "17:30",
-    "duracao": 45,
-    "local": 4,
-    "companhia": 7,
-    "dependencia": 21,
-    "simultanea": ""
-  },
-  {
-    "task": 20,
-    "inicio": "12:30",
-    "duracao": 45,
-    "local": 3,
-    "companhia": "",
-    "dependencia": "",
-    "simultanea": ""
-  }
-]
+    {
+      "task": 1,
+      "inicio": "09:00",
+      "duracao": 20,
+      "local": 2,
+      "companhia": 0,
+      "dependencia": 3,
+      "simultanea": ""
+    },
+    {
+      "task": 2,
+      "inicio": "08:20",
+      "duracao": 10,
+      "local": 2,
+      "companhia": 0,
+      "dependencia": 3,
+      "simultanea": ""
+    },
+    {
+      "task": 3,
+      "inicio": "09:30",
+      "duracao": 10,
+      "local": 3,
+      "companhia": 0,
+      "dependencia": 3,
+      "simultanea": ""
+    },
+    {
+      "task": 19,
+      "inicio": "08:30",
+      "duracao": 30,
+      "local": 4,
+      "companhia": 0,
+      "dependencia": 2,
+      "simultanea": ""
+    },
+    {
+      "task": 4,
+      "inicio": "12:00",
+      "duracao": 30,
+      "local": 4,
+      "companhia": 0,
+      "dependencia": 2,
+      "simultanea": ""
+    },
+    {
+      "task": 5,
+      "inicio": "18:30",
+      "duracao": 30,
+      "local": 4,
+      "companhia": 0,
+      "dependencia": 2,
+      "simultanea": ""
+    },
+    {
+      "task": 6,
+      "inicio": "15:00",
+      "duracao": 30,
+      "local": 4,
+      "companhia": 0,
+      "dependencia": 2,
+      "simultanea": ""
+    },
+    {
+      "task": 7,
+      "inicio": "9:45",
+      "duracao": 135,
+      "local": 4,
+      "companhia": 0,
+      "dependencia": 2,
+      "simultanea": ""
+    },
+    {
+      "task": 7,
+      "inicio": "13:00",
+      "duracao": 120,
+      "local": 4,
+      "companhia": 0,
+      "dependencia": 2,
+      "simultanea": ""
+    },
+    {
+      "task": 7,
+      "inicio": "19:00",
+      "duracao": 120,
+      "local": 4,
+      "companhia": 0,
+      "dependencia": 2,
+      "simultanea": ""
+    },
+    {
+      "task": 9,
+      "inicio": "15:30",
+      "duracao": 120,
+      "local": 4,
+      "companhia": 0,
+      "dependencia": 2,
+      "simultanea": ""
+    },
+    {
+      "task": 16,
+      "inicio": "17:30",
+      "duracao": 45,
+      "local": 4,
+      "companhia": 7,
+      "dependencia": 21,
+      "simultanea": ""
+    },
+    {
+      "task": 20,
+      "inicio": "12:30",
+      "duracao": 45,
+      "local": 3,
+      "companhia": "",
+      "dependencia": "",
+      "simultanea": ""
+    }
+  ]
 }
