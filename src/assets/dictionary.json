@@ -1,18 +1,36 @@
 {
   "local":{
-
+    "1": "WC Social",
+    "2": "WC Suíte",
+    "3": "Quarto",
+    "4": "Sala",
+    "5": "Cozinha",
+    "6": "Condomínio",
+    "7": "Externo",
+    "8": "Casa Terceiro"
   },
   "companhia":{
-
+    "0": "Sozinho",
+    "1": "Empregada Doméstica",
+    "2": "Empregado Outro",
+    "3": "Filho",
+    "4": "Neto",
+    "5": "Amigo",
+    "6": "Colega",
+    "7": "Terapeuta"
   },
   "dependencia":{
-
+    "0": "Independente",
+    "1": "Semi-Independente",
+    "2": "Semi-Dependente",
+    "3": "Dependente"
   },
   "tasks":{
     "1": "Banho",
     "2": "Escovação",
     "3": "Vestir-se",
 
+    "19": "Café da Manhã",
     "4": "Almoço",
     "5": "Jantar",
     "6": "Lanche",
@@ -30,6 +48,9 @@
 
     "16": "Terapias",
     "17": "Banheiro",
+    "20": "Cochilos",
+
+    "21": "Conversa",
 
     "18": "Outros"
   },
@@ -40,7 +61,7 @@
     },
     {
       "titulo": "Alimentação",
-      "tasks":[3,4,5]
+      "tasks":[3,4,5,19]
     },
     {
       "titulo": "Lazer",

@@ -19,3 +19,81 @@ local da atividade, de acordo com o dicionário (Int)
 companhia é a presença de outra pessoa, além do cuidador, de acordo com o dicionário
 simultanea é se outra atividade ocorreu simultaneamente, de acordo com o dicionário
 dependência é o quão nescessário foi o auxílio/supervisão de outra pessoa na execuçao da atividade, de acordo com o dicionário
+
+Outros dados
+{
+  "local":{
+    "1": "WC Social",
+    "2": "WC Suíte",
+    "3": "Quarto",
+    "4": "Sala",
+    "5": "Cozinha",
+    "6": "Condomínio", // dependências internas do prédio/condominio
+    "7": "Externo", // ar livre
+    "8": "Casa Terceiro" // casa de familiares ou amigos
+  },
+  "companhia":{
+    "0": "Sozinho",
+    "1": "Empregada Doméstica",
+    "2": "Empregado Outro",
+    "3": "Filho",
+    "4": "Neto",
+    "5": "Amigo",
+    "6": "Colega" // trabalho/estudo
+  },
+  "dependencia":{
+    // presença de alguem auxiliando
+    "0": "Independente",
+    "1": "Semi-Independente",
+    "2": "Semi-Dependente",
+    // executando sozinho
+    "3": "Dependente"
+  },
+  "tasks":{
+    "1": "Banho",
+    "2": "Escovação",
+    "3": "Vestir-se",
+
+    "4": "Almoço",
+    "5": "Jantar",
+    "6": "Lanche",
+
+    "7": "Televisão",
+    "8": "Atividade Física",
+    "9": "Jogos",
+    "10": "Atividade Religiosa",
+    "11": "Leitura",
+
+    "12": "Cozinhar",
+    "13": "ADM Remédios",
+    "14": "ADM Contas",
+    "15": "Estudo",
+
+    "16": "Terapias",
+    "17": "Banheiro",
+
+    "18": "Outros"
+  },
+  "categorias":[
+    {
+      "titulo": "Cuidados Pessoais",
+      "tasks":[1,2,3]
+    },
+    {
+      "titulo": "Alimentação",
+      "tasks":[3,4,5]
+    },
+    {
+      "titulo": "Lazer",
+      "tasks":[7,8,9,10,11]
+    },
+    {
+      "titulo": "Instrumentais",
+      "tasks":[12,13,14,15]
+    },
+    {
+      "titulo": "Outros",
+      "tasks":[18]
+    }
+  ]
+}
