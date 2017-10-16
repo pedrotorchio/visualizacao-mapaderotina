@@ -4,7 +4,7 @@
 
 export default class D3Visualization{
 
-  constructor(width, height, context = 'body', name = ''){
+  constructor(width = 500, height = 500, context = 'body', name = ''){
 
     console.log(`Criando visualização ${name} em ${context}`);
 

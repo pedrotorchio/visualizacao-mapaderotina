@@ -1,9 +1,14 @@
 import D3Visualization from './components/D3Visualization';
 import App from './App';
+import $ from 'jquery';
 
 let APP = new App();
-
-APP.onDoneLoading((data)=>{
-  console.log(data);
+APP.onPageReady(function(){
+  fakeuserinputevent();
 });
-let ganttContainer = new D3Visualization(500, 500, '#app', 'gantt');
+
+function fakeuserinputevent(){
+  d3.json('/assets/tasks-joão.json', data=>{
+    APP.setData(data);
+  });
+}

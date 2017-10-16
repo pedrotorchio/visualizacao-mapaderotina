@@ -1,7 +1,8 @@
 {
-  "nome": "João Vega",
-  "idade": 75,
-
+  "meta":{
+    "nome": "João Vega",
+    "idade": 75
+  },
   "tasks":[
     {
       "task": 1,

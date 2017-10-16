@@ -1,4 +1,7 @@
 {
+  "format":{
+    "hora": "%H:%M"
+  },
   "local":{
     "1": "WC Social",
     "2": "WC Suíte",
@@ -54,7 +57,7 @@
 
     "18": "Outros"
   },
-  "categorias":[
+  "categoria":[
     {
       "titulo": "Cuidados Pessoais",
       "tasks":[1,2,3]
