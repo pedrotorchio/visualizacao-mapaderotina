@@ -43,7 +43,7 @@ export default class App{
     let categorias = this.dictionary.categoria;
     var colorScale = d3.scaleLinear()
         .domain([0, categorias.length])
-        .range(["#00B9FA", "#F95002"])
+        .range(['#00B9FA', '#F95002'])
         .interpolate(d3.interpolateHcl);
 
     return colorScale;
@@ -76,12 +76,12 @@ export default class App{
         .attr('class', 'grid')
         .attr('transform', 'translate(' +theSidePad + ', ' + (h - 50) + ')')
         .call(xAxis)
-        .selectAll("text")
-                .style("text-anchor", "middle")
-                .attr("fill", "#000")
-                .attr("stroke", "none")
-                .attr("font-size", 10)
-                .attr("dy", "1em");
+        .selectAll('text')
+                .style('text-anchor', 'middle')
+                .attr('fill', '#000')
+                .attr('stroke', 'none')
+                .attr('font-size', 10)
+                .attr('dy', '1em');
 
   }
   getDimensions(){
