@@ -61,13 +61,35 @@ export default class App{
               .range([0, width]);
   }
   ___createGrid(){
+    let dimensions = this.___getDimensions();
+    let theSidePad = dimensions.padding;
+    // theSidePad, theTopPad, w, h
+
+    var xAxis = d3.svg.axis()
+        .scale(timeScale)
+        .orient('bottom')
+        .ticks(d3.time.days, 1)
+        .tickSize(-h+theTopPad+20, 0, 0)
+        .tickFormat(d3.time.format('%d %b'));
+
+    var grid = svg.append('g')
+        .attr('class', 'grid')
+        .attr('transform', 'translate(' +theSidePad + ', ' + (h - 50) + ')')
+        .call(xAxis)
+        .selectAll("text")
+                .style("text-anchor", "middle")
+                .attr("fill", "#000")
+                .attr("stroke", "none")
+                .attr("font-size", 10)
+                .attr("dy", "1em");
 
   }
   getDimensions(){
     return {
       width: 500,
       height: 500,
-      padding: 75
+      padding: 75,
+      barHeight: 20
     };
   }
   onPageReady(callback){
