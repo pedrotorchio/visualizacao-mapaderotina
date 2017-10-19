@@ -2,6 +2,7 @@ declare var d3;
 import * as $ from 'jquery';
 import D3Visualization from './components/D3Visualization';
 import Gantt from './components/D3GanttComponent';
+import Counter from './lib/Counter';
 
 
 export default class App{
@@ -25,7 +26,9 @@ export default class App{
       console.log(data);
     });
   }
-  
+  updateCharts(){
+    console.log("Gerando visualizações..");
+  }
 
 
   /*****
@@ -37,6 +40,8 @@ export default class App{
     /**
      * desencadeia a geração da visualização
      */
+    let time  = new Counter('Setar dados');
+
     data.tasks = this._reconfigureTasks(data.tasks);
 
     console.log('Dados recebidos');
@@ -45,6 +50,7 @@ export default class App{
     this._setTimeDiary(data.tasks);
     this._setMetaData(data.meta);
 
+    time.end();
     this.updateCharts();
 
     return this;
@@ -100,17 +106,33 @@ export default class App{
 
       return categoria.titulo;
     }
-  updateCharts(){
-    console.log('Gerando visualizações');
 
-    // this.___generateGantt();
-  }
   private _setTimeDiary(td:any[]){
     this.diary = td;
   }
   private _setMetaData(meta){
     this.meta = meta;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   ___generateContainer(){
     // let timeFormat = this.dictionary.format.hora;
