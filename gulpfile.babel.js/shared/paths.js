@@ -21,7 +21,7 @@ module.exports = function () {
     const outputDir = `dist/${packagejson.version}`;
     const iconsFolderName = 'icons';
     const iconsSrcFiles = `${srcDir}/images/${iconsFolderName}/*.svg`;
-    const scriptsMainFile = 'index.js';
+    const scriptsMainFile = 'index.ts';
 
 
     return {

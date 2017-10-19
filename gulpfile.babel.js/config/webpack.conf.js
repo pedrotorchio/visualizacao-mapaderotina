@@ -37,8 +37,15 @@ export default (() => {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 loader: 'babel?presets[]=es2015'
-            }]
+            },
+            { test: /\.tsx?$/, loader: "ts-loader" }]
+
         },
+        resolve: {
+            // Add '.ts' and '.tsx' as a resolvable extension.
+            extensions: ["", ".ts", ".tsx", ".js"]
+        },
+        devtool: 'inline-source-map',
         plugins: []
     };
 
