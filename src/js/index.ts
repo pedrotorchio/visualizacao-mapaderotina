@@ -1,6 +1,7 @@
+declare var d3;
+
 import D3Visualization from './components/D3Visualization';
 import App from './App';
-import $ from 'jquery';
 
 let APP = new App();
 APP.onPageReady(function(){
