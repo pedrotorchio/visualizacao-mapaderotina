@@ -1,15 +1,17 @@
 declare var d3;
+import * as $ from 'jquery';
 import D3Visualization from './components/D3Visualization';
 import Gantt from './components/D3GanttComponent';
 
 
 export default class App{
-  data:any[];
+  diary:any[];
   meta;
   dictionary;
+  dictionaryUrl:string = '/assets/dictionary.json';
 
   constructor(){
-    this.data = [];
+    this.diary = [];
     this.meta = {};
 
     this.dictionary = {};
@@ -17,18 +19,99 @@ export default class App{
     this.updateDictionary();
   }
   updateDictionary(){
-
-    d3.json('/assets/dictionary.json', data=>{
+    d3.json(this.dictionaryUrl, data=>{
       console.log('Carregando Dicionário');
       this.dictionary = data;
       console.log(data);
     });
   }
+  
+
+
+  /*****
+   *
+   * SETDATA
+   *
+   ****/
+  setData(data):App{
+    /**
+     * desencadeia a geração da visualização
+     */
+    data.tasks = this._reconfigureTasks(data.tasks);
+
+    console.log('Dados recebidos');
+    console.log(data);
+
+    this._setTimeDiary(data.tasks);
+    this._setMetaData(data.meta);
+
+    this.updateCharts();
+
+    return this;
+  }
+  private _reconfigureTasks(tasks):any[]{
+      /** reformata array de atividades
+        *
+        */
+      let format;
+          format = this.dictionary.format.hora;
+          format = d3.timeParse(format);
+
+      tasks.map(task=>{
+        // pegar nomes das variaveis
+        task = this._getDictionaryMeta(task);
+        // parsear inicio em objecto Date
+        task.inicio = format(task.inicio);
+        // randomicamente setar se ativo (1) ou passivo (0)
+        task.classe = Math.round(Math.random()*17)%4;
+
+        return task;
+      });
+      // ordenar por hora de inicio
+      tasks = tasks.sort((a,b)=>a.inicio-b.inicio);
+
+      return tasks;
+    }
+
+    private _getDictionaryMeta(task){
+      let dictionary               = this.dictionary;
+      let taskName:string          = dictionary.task[task.task];
+      let localName:string         = dictionary.local[task.local];
+      let companhiaName:string     = dictionary.companhia[task.companhia];
+      let dependenciaName:string   = dictionary.dependencia[task.dependencia];
+      let simultaneaName:string    = dictionary.task[task.simultanea] || '';
+      let categoriaName:string     = this._getCategoriaForTaskId(task.task);
+
+      $.extend(task, {
+        taskName,
+        localName,
+        companhiaName,
+        dependenciaName,
+        categoriaName,
+        simultaneaName
+      });
+      return task;
+    }
+    private _getCategoriaForTaskId(taskId:number):string{
+
+      let categoria = this.dictionary.categoria.filter(
+        categoria=>categoria.tasks.includes(taskId)
+      )[0];
+
+      return categoria.titulo;
+    }
   updateCharts(){
     console.log('Gerando visualizações');
 
     // this.___generateGantt();
   }
+  private _setTimeDiary(td:any[]){
+    this.diary = td;
+  }
+  private _setMetaData(meta){
+    this.meta = meta;
+  }
+
   ___generateContainer(){
     // let timeFormat = this.dictionary.format.hora;
     // let horaScale = this.___getHoraScale();
@@ -129,72 +212,7 @@ export default class App{
   init(){
 
   }
-  setData(data){
-    /**
-     * desencadeia a geração da visualização
-     */
-    data.tasks = this._reconfigureTasks(data.tasks);
 
-    console.log('Dados recebidos');
-    console.log(data);
-
-    // this.___setTimeDiary(data.tasks);
-    // this.___setMetaData(data.meta);
-
-    this.updateCharts();
-  }
-  private _reconfigureTasks(tasks){
-    /** reformata array de atividades
-      *
-      */
-
-    let format:string;
-        format = this.dictionary.format.hora;
-        format = d3.timeParse(format);
-
-    tasks.map(task=>{
-      task = this._getDictionaryMeta(task);
-      // task.inicio = format(task.inicio);
-
-      // // randomicamente setar se ativo (1) ou passivo (0)
-      // task.classe = Math.round(Math.random()*100)%2;
-
-      return task;
-    });
-    tasks = tasks.sort((a,b)=>a.inicio-b.inicio);
-
-    return tasks;
-  }
-  private _getDictionaryMeta(task){
-    let dictionary               = this.dictionary;
-    let taskName:string          = dictionary.task[task.task];
-    let localName:string         = dictionary.local[task.local];
-    let companhiaName:string     = dictionary.companhia[task.companhia];
-    let dependenciaName:string   = dictionary.dependencia[task.dependencia];
-    let simultaneaName:string    = dictionary.task[task.simultanea] || '';
-
-    let categoria = dictionary.categoria.filter(categoria=>{
-      let taskId:number = parseInt(task.task);
-      return categoria.tasks.includes(taskId);
-    });
-    console.log(categoria);
-    let categoriaName     = categoria.titulo;
-
-    // $.extend(task, {
-    //   taskName,
-    //   localName,
-    //   companhiaName,
-    //   dependenciaName,
-    //   categoriaName
-    // });
-    return task;
-  }
-  // ___setTimeDiary(diary){
-  //   this.data = diary;
-  // }
-  // ___setMetaData(meta){
-  //   this.meta = meta;
-  // }
   // ___getDocumentDimensions(){
   //   let height = Math.max($(document).height(), $(window).height());
   //   let width = Math.max($(document).width(), $(window).width());

@@ -64,11 +64,11 @@
     },
     {
       "titulo": "Alimentação",
-      "tasks":[3,4,5,19]
+      "tasks":[19,4,5,6]
     },
     {
       "titulo": "Lazer",
-      "tasks":[7,8,9,10,11]
+      "tasks":[7,8,9,10,11,21]
     },
     {
       "titulo": "Instrumentais",
@@ -76,7 +76,7 @@
     },
     {
       "titulo": "Outros",
-      "tasks":[18]
+      "tasks":[16,17,18,20]
     }
   ]
 }
