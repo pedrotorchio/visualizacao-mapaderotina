@@ -22,6 +22,7 @@
     "release-major": "release-it --non-interactive major"
   },
   "devDependencies": {
+    "@types/jquery": "^3.2.15",
     "autoprefixer": "6.4.0",
     "babel-core": "6.14.0",
     "babel-eslint": "6.1.2",

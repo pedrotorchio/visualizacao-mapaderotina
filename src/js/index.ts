@@ -2,14 +2,12 @@ declare var d3;
 
 import D3Visualization from './components/D3Visualization';
 import App from './App';
+import * as $ from 'jquery';
 
-let APP = new App();
-APP.onPageReady(function(){
-  fakeuserinputevent();
-});
+let app = new App();
 
-function fakeuserinputevent(){
+$(()=>{
   d3.json('/assets/tasks-joão.json', data=>{
-    APP.setData(data);
+    app.setData(data);
   });
-}
+});

@@ -3,6 +3,7 @@
     "sourceMap": true,
     "allowJs": true,
     "target": "ES5",
-	"module": "commonjs"
+  	"module": "commonjs",
+    "allowSyntheticDefaultImports": true
   }
 }
