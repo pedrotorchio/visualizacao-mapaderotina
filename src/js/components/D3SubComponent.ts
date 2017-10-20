@@ -41,7 +41,7 @@ export default class D3Subcomponent extends D3Component{
     if(typeof position === 'object')
       this.position = position;
     else
-      this.position = position(this.getSizes());
+      this.position = position(this.getDrawSizes());
 
     return this;
   }
