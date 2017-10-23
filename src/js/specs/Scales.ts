@@ -14,19 +14,14 @@ export default class Scales{
     this.extractStatistics();
   }
   private extractStatistics(){
-    let data      = this.data;
 
-    // Arredondar hora inicial pra baixo
-    const c = 1000 * 60 * 60;
-    let inicio = this.data[0].inicio.getTime();
-        inicio = Math.round(inicio/c) * c;
+    this.taskStatistics();
+    this.dayBoundaries();
+    console.log(this.statistics)
 
-    let fim    = data.slice(-1)[0];
-        fim    = fim.inicio.getTime() + fim.duracao * (60 * 1000); // inicio + duracao
-        fim    = Math.ceil(fim/c) * c;
-
-    this.statistics['dayStartMin'] = this.ms2min(inicio);
-    this.statistics['dayEndMin']   = this.ms2min(fim);
+  }
+  private taskStatistics(){
+    let data = this.data;
 
     this.statistics.catList = [];
     this.statistics.catCount = {};
@@ -40,11 +35,31 @@ export default class Scales{
       if(this.statistics.catCount[catName] === undefined)
         this.statistics.catList.push(task.categoriaName);
       if(this.statistics.taskCount[taskName] === undefined)
-        this.statistics.taskList.push(task.task);
+        this.statistics.taskList.push({
+          id:task.task,
+          name:task.taskName
+        });
 
       this.statistics.catCount[catName] = 1 + (this.statistics.catCount[catName] || 0)
       this.statistics.taskCount[taskName] = 1 + (this.statistics.taskCount[taskName] || 0)
     })
+  }
+  private dayBoundaries(){
+    // Arredondar hora inicial pra baixo
+    let data = this.data;
+    const c = 1000 * 60 * 60;
+    let inicio = this.data[0].inicio.getTime();
+        inicio = Math.round(inicio/c) * c;
+        inicio = new Date(inicio);
+
+    let fim    = data.slice(-1)[0];
+        fim    = fim.inicio.getTime() + fim.duracao * (60 * 1000); // inicio + duracao
+        fim    = Math.ceil(fim/c) * c;
+        fim    = new Date(fim);
+
+    this.statistics['dayStartMin'] = inicio;
+    this.statistics['dayEndMin']   = fim;
+
   }
   private extractCategoriesList(){
     this.data.map(task=>{
@@ -60,17 +75,16 @@ export default class Scales{
     let domain = [inicio,fim];
     let range  = [drawEdges.left, drawEdges.right];
 
-    let xScale = d3.scaleTime()
-                    .domain(domain)
-                    .range(range);
+    return d3.scaleTime()
+              .domain(domain)
+              .range(range);
 
-    return (dateobj)=>xScale(this.ms2min(dateobj.getTime()));
   }
 
   getYScale(){
     let drawEdges = this.component.getDrawEdges();
-
-    let domain = this.statistics.taskList;
+    let sizes  = this.component.getSizes();
+    let domain = this.statistics.taskList.map(t=>t.name);
     let range  = [drawEdges.top, drawEdges.bottom];
 
     return d3.scaleBand()
@@ -79,7 +93,7 @@ export default class Scales{
   }
   getWidthScale(){
     let drawSizes = this.component.getDrawSizes();
-    let diff = this.statistics['dayEndMin'] - this.statistics['dayStartMin'];
+    let diff   = this.ms2min(this.statistics['dayEndMin'].getTime() - this.statistics['dayStartMin'].getTime());
     let domain = [0, diff]
     let range  = [0, drawSizes.width];
 
@@ -88,9 +102,10 @@ export default class Scales{
               .range(range);
   }
   getHeightScale(){
+    let drawHeight = this.component.getDrawSizes().height;
+    let taskCount   = this.statistics.taskList.length;
 
-
-    return ()=>40;
+    return ()=>drawHeight/(taskCount);
   }
   getClass(task){
     let classe = 'undefined ';

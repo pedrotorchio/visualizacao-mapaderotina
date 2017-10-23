@@ -21,6 +21,8 @@ export default class D3GanttComponent extends D3Subcomponent{
         .attr('y', 0)
         .attr('x', 0)
       );
+
+      return this;
   }
 
 }

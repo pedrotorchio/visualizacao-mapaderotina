@@ -13,7 +13,7 @@ export default class D3Subcomponent extends D3Component{
     top: 0
   };
 
-  constructor(name:string, type:string, data:any[]){
+  constructor(name:string, type:string, data?:any[]){
     super(name, type, D3Subcomponent.root);
     this.data = data;
   }

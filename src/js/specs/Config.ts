@@ -2,9 +2,9 @@ import Sizes from '../components/iSizes';
 
 export default class Config{
   static sizes:Sizes = {
-    width: 800,
+    width: 1024,
     height: 600,
-    padding: 5
+    padding: 25
   };
 
 }

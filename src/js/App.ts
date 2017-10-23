@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 import Sizes from './components/iSizes';
 import Visualization from './components/D3Visualization';
 import Gantt from './components/D3GanttComponent';
+import Axis from './components/D3AxisComponent';
 import Counter from './lib/Counter';
 import Scales from './specs/Scales';
 import Formatter from './specs/Formatter';
@@ -43,27 +44,25 @@ export default class App{
     let fWidth = Config.sizes.width;
     let fHeight = Config.sizes.height;
     let fPadding = Config.sizes.padding;
+    let leftPaneWidth = 80;
+    let scales  = new Scales(gantt);
 
     svg
       .placeIn('#app')
       .setSizes(Config.sizes);
 
-
-
     gantt
       .placeIn(svg)
       .setSizes({
-        width:  600,
-        height: 500,
+        width:  fWidth-leftPaneWidth,
+        height: fHeight*5/6,
         padding: fPadding
       })
       .setPosition({
-          left: 200,
+          left: leftPaneWidth,
           top: 0
       })
       .configRects(function(rects){
-          let scales = new Scales(this);
-
           let xScale = scales.getXScale();
           let yScale = scales.getYScale();
           let wScale = scales.getWidthScale();
@@ -74,7 +73,7 @@ export default class App{
             .attr('transform', d=>{
               let time = d.inicio;
                   time = xScale(time);
-              let task = d.task;
+              let task = d.taskName;
                   task = yScale(task);
 
               return `translate(${time}, ${task})`;
@@ -83,11 +82,25 @@ export default class App{
             .attr('width', d=>wScale(d.duracao))
       });
 
+    let taskAxis = d3.axisRight(scales.getYScale());
+    let hourAxis = d3.axisTop(scales.getXScale())
+      .ticks(d3.timeHour)
+      .tickFormat(d3.timeFormat('%H:%m'));
+
+    svg.getElement()
+      .append('g')
+      .attr('id', 'task-axis')
+      .attr('transform', 'translate(0, 0)')
+      .call(taskAxis)
+
+    svg.getElement()
+      .append('g')
+      .attr('id', 'hour-axis')
+      .attr('transform', `translate(0, ${fHeight-5})`)
+      .call(hourAxis)
+
     time.end();
   }
-
-
-
   /*****
    *
    * SETDATA

@@ -51,6 +51,7 @@ export default class D3Component{
   }
   getDrawSizes(which?:string){
     let sizes:Sizes  = this.getSizes();
+
     let width:number = sizes.width - 2*sizes.padding;
     let height:number = sizes.height - 2*sizes.padding;
     let drawSizes:Sizes = {
@@ -82,6 +83,16 @@ export default class D3Component{
     this.element = target.append(this.root)
       .attr('id', this.name)
       .attr('class', this.type);
+
+    return this;
+  }
+  call(func){
+    this.getElement().call(func);
+
+    return this;
+  }
+  append(element){
+    this.getElement().append(element);
 
     return this;
   }
