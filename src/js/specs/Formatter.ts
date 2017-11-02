@@ -26,8 +26,6 @@ export default class Formatter{
       task = this.getDictionaryMeta(task);
       // parsear inicio em objecto Date
       task.inicio = format(task.inicio);
-      // randomicamente setar se ativo (1) ou passivo (0)
-      task.classe = Math.round(Math.random()*17)%4 === 0? 0 : 1;
 
       return task;
     });

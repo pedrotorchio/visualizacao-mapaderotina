@@ -55,7 +55,7 @@ export default class App{
       .placeIn(svg)
       .setSizes({
         width:  fWidth-leftPaneWidth,
-        height: fHeight*5/6,
+        height: fHeight,
         padding: fPadding
       })
       .setPosition({
@@ -81,22 +81,29 @@ export default class App{
             .attr('height', height)
             .attr('width', d=>wScale(d.duracao))
       });
+    let ganttSizes = gantt.getSizes();
+    let taskAxis = d3.axisLeft(scales.getYScale())
+    // fwidth - leftpanewidth - padding
+      .tickSize(-(fWidth - leftPaneWidth - 2*fPadding));
+    let hourAxis = d3.axisBottom(scales.getXScale())
+      .ticks(d3.timeMinute.every(30))
+      .tickSize(-560)
+      .tickFormat(d3.timeFormat('%H:%M'));
 
-    let taskAxis = d3.axisRight(scales.getYScale());
-    let hourAxis = d3.axisTop(scales.getXScale())
-      .ticks(d3.timeHour)
-      .tickFormat(d3.timeFormat('%H:%m'));
+    let ganttsizes = gantt.getSizes();
 
     svg.getElement()
       .append('g')
       .attr('id', 'task-axis')
-      .attr('transform', 'translate(0, 0)')
+      .attr('class', 'axis')
+      .attr('transform', `translate(${leftPaneWidth + ganttsizes.padding}, 0)`)
       .call(taskAxis)
 
     svg.getElement()
       .append('g')
       .attr('id', 'hour-axis')
-      .attr('transform', `translate(0, ${fHeight-5})`)
+      .attr('class', 'axis')
+      .attr('transform', `translate(0, ${fHeight-fPadding})`)
       .call(hourAxis)
 
     time.end();

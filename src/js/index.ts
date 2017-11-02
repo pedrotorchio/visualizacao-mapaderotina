@@ -1,4 +1,5 @@
 declare var d3;
+declare var firebase;
 
 import D3Visualization from './components/D3Visualization';
 import App from './App';

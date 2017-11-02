@@ -17,7 +17,6 @@ export default class Scales{
 
     this.taskStatistics();
     this.dayBoundaries();
-    console.log(this.statistics)
 
   }
   private taskStatistics(){
@@ -47,6 +46,9 @@ export default class Scales{
   private dayBoundaries(){
     // Arredondar hora inicial pra baixo
     let data = this.data;
+    console.log(data);
+    let forma = d3.timeFormat("%H:%M");
+    console.log(forma(data[0].inicio));
     const c = 1000 * 60 * 60;
     let inicio = this.data[0].inicio.getTime();
         inicio = Math.round(inicio/c) * c;

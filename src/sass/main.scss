@@ -24,3 +24,15 @@ svg.visualization{
 .passivo{
   fill: $color__passivo;
 }
+.axis .tick{
+  line{
+    stroke: #eaeaea;
+
+  }
+  &:nth-child(even) line{
+    stroke: #adadad;
+  }
+}
+#task-axis .tick line {
+  stroke: #adadad;
+}

@@ -11,7 +11,8 @@
       "local": 2,
       "companhia": 0,
       "dependencia": 3,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 2,
@@ -20,7 +21,8 @@
       "local": 2,
       "companhia": 0,
       "dependencia": 3,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 3,
@@ -29,7 +31,8 @@
       "local": 3,
       "companhia": 0,
       "dependencia": 3,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 19,
@@ -38,7 +41,8 @@
       "local": 4,
       "companhia": 0,
       "dependencia": 2,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 4,
@@ -47,7 +51,8 @@
       "local": 4,
       "companhia": 0,
       "dependencia": 2,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 5,
@@ -56,7 +61,8 @@
       "local": 4,
       "companhia": 0,
       "dependencia": 2,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 6,
@@ -65,7 +71,8 @@
       "local": 4,
       "companhia": 0,
       "dependencia": 2,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 7,
@@ -74,7 +81,8 @@
       "local": 4,
       "companhia": 0,
       "dependencia": 2,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 7,
@@ -83,7 +91,8 @@
       "local": 4,
       "companhia": 0,
       "dependencia": 2,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 0
     },
     {
       "task": 7,
@@ -92,7 +101,8 @@
       "local": 4,
       "companhia": 0,
       "dependencia": 2,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 9,
@@ -101,7 +111,8 @@
       "local": 4,
       "companhia": 0,
       "dependencia": 2,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 16,
@@ -110,7 +121,8 @@
       "local": 4,
       "companhia": 7,
       "dependencia": 21,
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     },
     {
       "task": 20,
@@ -119,7 +131,8 @@
       "local": 3,
       "companhia": "",
       "dependencia": "",
-      "simultanea": ""
+      "simultanea": "",
+      "classe": 1
     }
   ]
 }

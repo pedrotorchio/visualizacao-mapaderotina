@@ -38,7 +38,11 @@ export default (() => {
                 exclude: /(node_modules)/,
                 loader: 'babel?presets[]=es2015'
             },
-            { test: /\.tsx?$/, loader: "ts-loader" }]
+            {
+              test: /\.tsx?$/,
+              exclude: /(node_modules)/,
+              loader: "ts-loader",
+             }]
 
         },
         resolve: {
