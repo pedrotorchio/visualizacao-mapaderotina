@@ -22,11 +22,8 @@
     "6": "Colega",
     "7": "Terapeuta"
   },
-  "dependencia":{
-    "0": "Independente",
-    "1": "Semi-Independente",
-    "2": "Semi-Dependente",
-    "3": "Dependente"
+  "independencia":{
+    
   },
   "task":{
     "1": "Banho",

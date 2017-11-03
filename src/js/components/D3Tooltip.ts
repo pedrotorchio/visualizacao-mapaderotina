@@ -1,5 +1,8 @@
 declare var d3 : any;
-export default class D3Tooltip{
+
+import {D3Component, iD3Callable} from '.';
+
+export class D3Tooltip{
   selection; ul; h1; h2;
   private static instance = null;
   private constructor(){
@@ -41,14 +44,44 @@ export default class D3Tooltip{
       .style('top', `${y}px`)
       .classed('shown', true);
       return this;
-
   }
   public hide(){
     this.h1.html('');
+    this.h2.html('');
     this.ul.html('');
     this.selection
       .classed('shown', false);
 
       return this;
+  }
+  public static getCallable(){
+    return D3Tooltip.callable;
+  }
+  private static callable(selection){
+
+    let tip = D3Tooltip.getInstance();
+
+    selection
+    .on('mouseover', d=>{
+      let dados = [`${d.duracao}min`]
+      if(d.companhiaName)
+        dados.push(d.companhiaName);
+      if(d.simultaneaName)
+        dados.push(d.simultaneaName);
+      if(d.localName)
+        dados.push(d.localName);
+      if(d.independencia)
+        dados.push(`Independência: ${d.independencia}%`);
+
+      tip
+        .setTitle(`${d.taskName} ${d.horario}`)
+        .setSubtitle(d.categoriaName)
+        .listItems(dados)
+        .show(d3.event.pageX, d3.event.pageY);
+    })
+    .on('mouseout', d => {
+      tip
+        .hide();
+    })
   }
 }

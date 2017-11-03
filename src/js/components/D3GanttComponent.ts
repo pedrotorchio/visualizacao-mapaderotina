@@ -1,8 +1,8 @@
 declare var d3;
 import Scales from '../specs/Scales';
-import D3Tooltip from './D3Tooltip';
+import {D3Tooltip, D3TimeAxis, D3Component, D3TaskAxis} from '.';
 
-export class D3GanttComponent{
+export class D3GanttComponent extends D3Component{
   static type:string = 'gantt';
   width:number;
   height:number;
@@ -11,45 +11,35 @@ export class D3GanttComponent{
   left:number = 0;
   root:any;
   gantt:any;
-  constructor(private data){}
-  public setSize(width:number, height:number, padding:number = 15){
-    this.width = width;
-    this.height = height;
-    this.padding = padding;
-    return this;
+
+  constructor(private data){
+    super(D3GanttComponent.type);
   }
-  public setPosition(left:number, top:number){
-    this.top = top;
-    this.left = left;
-    return this;
-  }
+
   public placeIn(svg){
-    this.root = svg;
-    this.gantt = svg
-    .append('g')
-    .attr('id', 'gantt').attr('class', 'visualization')
+    super.placeIn(svg);
 
-    this.configRects();
+    this.init();
 
     return this;
   }
-  public configRects(){
-    let scales  = new Scales(this, this.data);
+
+  public init(){
+    let scales  = new Scales(this);
 
     let xScale = scales.getXScale();
     let yScale = scales.getYScale();
     let wScale = scales.getWidthScale();
     let hScale = scales.getHeightScale();
     let cScale = scales.getClassScale();
-    let tooltip = D3Tooltip.getInstance();
+    let dScale = scales.getColorScale();
 
-    this.gantt
+    this.getElement()
     .selectAll('.task-bar')
     .data(this.data).enter()
     .append('rect')
     .attr('y', 0)
     .attr('x', 0)
-
     .attr('class', cScale)
     .attr('transform', d=>{
       let time = d.inicio;
@@ -59,83 +49,14 @@ export class D3GanttComponent{
 
       return `translate(${time}, ${task})`;
     })
+    .attr('fill', dScale)
     .attr('height', hScale)
     .attr('width', d=>wScale(d.duracao))
-    .on('mouseover', d=>{
+    .call(D3Tooltip.getCallable());
 
-      let dados = [`${d.duracao}min`]
-      if(d.companhiaName)
-        dados.push(d.companhiaName);
-      if(d.simultaneaName)
-        dados.push(d.simultaneaName);
-      if(d.localName)
-        dados.push(d.localName);
-      if(d.dependenciaName)
-        dados.push(d.dependenciaName);
-
-      tooltip
-        .setTitle(`${d.taskName} ${d.horario}`)
-        .setSubtitle(d.categoriaName)
-        .listItems(dados)
-        .show(d3.event.pageX, d3.event.pageY);
-    })
-    .on('mouseout', d => {
-      tooltip
-        .hide();
-    })
-
-    this.axis(yScale, xScale);
+    this.call(new D3TimeAxis(xScale, 'time-axis'));
+    this.call(new D3TaskAxis(yScale, 'task-axis'));
 
     return this;
   }
-
-  private axis(yscale, xscale){
-    this.taskAxis(yscale);
-    this.timeAxis(xscale);
-  }
-  private taskAxis(yscale){
-    let edges = this.getDrawEdges();
-    let taskAxis = d3.axisLeft(yscale)
-      .tickSize(-this.getDrawWidth());
-
-    this.root
-      .append('g')
-      .attr('id', 'task-axis')
-      .attr('class', 'axis')
-      .attr('transform', `translate(${edges.left}, 0)`)
-      .call(taskAxis)
-  }
-  private timeAxis(xscale){
-    let edges = this.getDrawEdges();
-    let height = this.getDrawHeight();
-
-    let hourAxis = d3.axisBottom(xscale)
-      .ticks(d3.timeMinute.every(30))
-      .tickSize(-height)
-      .tickFormat(d3.timeFormat('%H:%M'));
-
-
-      this.root
-        .append('g')
-        .attr('id', 'time-axis')
-        .attr('class', 'axis')
-        .attr('transform', `translate(0, ${edges.bottom})`)
-        .call(hourAxis)
-  }
-  getDrawEdges(){
-    let left:number = this.left + this.padding;
-    let right:number = left + this.getDrawWidth();
-    let top:number = this.top + this.padding;
-    let bottom:number = top + this.getDrawHeight();
-
-    return { left, right, top, bottom };
-  }
-  getDrawWidth(fraction:number = 1)
-  {
-    return (this.width - 2*this.padding) * fraction;
-  }
-  getDrawHeight(fraction:number = 1){
-    return (this.height - 2*this.padding) * fraction;
-  }
-
 }

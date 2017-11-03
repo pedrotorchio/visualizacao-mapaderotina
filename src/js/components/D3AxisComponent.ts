@@ -1,22 +1,27 @@
 declare var d3;
-import D3Subcomponent from './D3Subcomponent';
-import D3Component from './D3Component';
+import {D3Component, iD3Callable} from '.';
 
-export default class D3AxisComponent extends D3Subcomponent{
+export abstract class D3AxisComponent implements iD3Callable{
   static type:string = 'axis';
-  protected scale;
-  protected type;
-  protected axis;
-  constructor(name:string, axis){
-    super(`${name}-${D3AxisComponent.type}`, D3AxisComponent.type);
-    this.axis = axis;
-  }
-  placeIn(context:string|D3Component){
-    super.placeIn(context);
 
-    this.getElement()
-      .call(this.axis);
+  constructor(protected scale, protected id:string, protected classes:string = ''){}
+
+  action(element:D3Component){
+    let axis = this.getAxis(element);
+
+    let x = this.getXTranslate(element);
+    let y = this.getYTranslate(element);
+
+    element.getRoot()
+    .append('g')
+    .attr('id', this.id)
+    .attr('class', `axis ${this.classes}`)
+    .attr('transform', `translate(${x}, ${y})`)
+    .call(axis);
 
     return this;
   }
+  protected abstract getAxis(element:D3Component);
+  protected abstract getXTranslate(element:D3Component):number;
+  protected abstract getYTranslate(element:D3Component):number;
 }

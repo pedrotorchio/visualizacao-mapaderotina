@@ -26,7 +26,7 @@ export default class Formatter{
       task = this.getDictionaryMeta(task);
       // parsear inicio em objecto Date
       task.horario = task.inicio;
-      
+
       task.inicio = format(task.inicio);
 
       return task;
@@ -42,7 +42,6 @@ export default class Formatter{
       let taskName:string          = dictionary.task[task.task] || '';
       let localName:string         = dictionary.local[task.local] || '';
       let companhiaName:string     = dictionary.companhia[task.companhia] || '';
-      let dependenciaName:string   = dictionary.dependencia[task.dependencia] || '';
       let simultaneaName:string    = dictionary.task[task.simultanea] || '';
       let categoriaName:string     = this.getCategoriaForTaskId(task.task) || '';
 
@@ -50,7 +49,6 @@ export default class Formatter{
         taskName,
         localName,
         companhiaName,
-        dependenciaName,
         categoriaName,
         simultaneaName
       });

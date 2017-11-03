@@ -1,18 +1,15 @@
 declare var d3;
 import * as $ from 'jquery';
-import Sizes from './components/iSizes';
 import Counter from './lib/Counter';
 import Statistics from './specs/Statistics';
 import Formatter from './specs/Formatter';
-import Config from './specs/Config';
-import Gantt from './Gantt';
+import {Gantt} from './Gantt';
 
 
 export default class App{
   private diary:any[];
   private meta;
   private dictionary;
-  private statistics:Statistics;
   private dictionaryUrl:string = '/assets/dictionary.json';
 
   constructor(){
@@ -63,17 +60,18 @@ export default class App{
       this.setMeta(data.meta);
 
       time.end();
-      this.updateCharts();
+
+      this.extractStatistics();
 
       return this;
+    }
+    private extractStatistics(){
+      Statistics.getInstance(this.diary);
     }
     private setDiary(diary:any[]){
       this.diary = diary;
     }
     private setMeta(meta:any){
       this.meta = meta;
-    }
-    private setStatistics(stats){
-      this.statistics = stats;
     }
   }

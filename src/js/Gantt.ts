@@ -1,8 +1,8 @@
-declare var d3: any;
 
-import {D3Visualization, D3GanttComponent} from './components';
+import {D3Visualization} from './components/D3Visualization';
+import {D3GanttComponent} from './components/D3GanttComponent';
 
-export default class Gantt{
+export class Gantt{
 
   width:number = 1000;
   height:number = 600;
@@ -15,9 +15,12 @@ export default class Gantt{
 
     const GANTT_WIDTH_FRACTION = .9;
 
+    let svg = new D3Visualization(
+      this.context,
+      this.width,
+      this.height
+    ).makeSvg();
 
-    let svg = new D3Visualization(this.context, this.width, this.height)
-        .makeSvg();
     let gantt = new D3GanttComponent(this.data)
         .setSize(
           this.getDrawWidth(GANTT_WIDTH_FRACTION),

@@ -1,19 +1,25 @@
 declare var d3 : any;
+import Counter from '../lib/Counter';
 
 export default class Statistics{
   private static instance:Statistics = null;
   statistics:any = {};
 
   private constructor(private data){
-    this.extractStatistics();
+    let count = new Counter('Extrair Estatísticas');
+      this.extractStatistics();
+    count.end();
   }
-  public static getInstance(data){
+  public static getInstance(data?){
     if(Statistics.instance == null)
-      Statistics.instance = new Statistics(data);
+      if(data == undefined)
+        throw 'Statistics: falta dados';
+      else
+        Statistics.instance = new Statistics(data);
 
     return Statistics.instance;
   }
-  public getStatistics(){
+  public getData(){
     return this.statistics;
   }
   private extractStatistics(){

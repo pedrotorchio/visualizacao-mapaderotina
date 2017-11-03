@@ -10,5 +10,6 @@ let app = new App();
 $(()=>{
   d3.json('/assets/tasks-joão.json', data=>{
     app.setData(data);
+    app.updateCharts();
   });
 });

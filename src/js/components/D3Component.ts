@@ -1,99 +1,63 @@
-declare var d3;
-import Sizes from './iSizes';
-import D3Subcomponent from './D3Subcomponent';
+import {iD3Callable} from '.';
 
-export default class D3Component{
-  protected name:string;
-  protected type:string;
-  protected sizes:Sizes;
-  protected root;
-  protected element;
+export class D3Component{
+  static type:string = 'component';
 
-  constructor(name:string, type:string, root:string){
-    this.name = name;
-    this.type = type;
-    this.root = root;
+  width:number;
+  height:number;
+  padding:number;
+  top:number = 0;
+  left:number = 0;
+
+  root:any;
+  subroot:any;
+
+  constructor(protected id:string, protected classes:string = ''){
+
   }
 
-  classed(classes:string, set?:boolean){
-    if(set == undefined)
-      this.getRoot()
-        .classed(classes);
-
-    else
-      this.getRoot()
-        .classed(classes, set);
+  public setSize(width:number, height:number, padding:number = 15){
+    this.width = width;
+    this.height = height;
+    this.padding = padding;
+    return this;
+  }
+  public setPosition(left:number, top:number){
+    this.top = top;
+    this.left = left;
+    return this;
+  }
+  public placeIn(svg){
+    this.root = svg;
+    this.subroot = svg
+    .append('g')
+    .attr('id', this.id).attr('class', this.classes)
 
     return this;
   }
-  setSizes(sizes:Sizes){
-    this.sizes = sizes;
-    return this;
-  }
-  getSizes(which?:string){
-    let sizes = this.sizes, tmp;
-
-    if(which !== undefined && (tmp = sizes[which]) !== undefined)
-      sizes = tmp;
-
-    return sizes;
-  }
-  getDrawEdges(){
-
-    let sizes = this.getSizes();
-
-    return {
-      left: sizes.padding,
-      top: sizes.padding,
-      right: sizes.width - sizes.padding,
-      bottom: sizes.height - sizes.padding
-    }
-  }
-  getDrawSizes(which?:string){
-    let sizes:Sizes  = this.getSizes();
-
-    let width:number = sizes.width - 2*sizes.padding;
-    let height:number = sizes.height - 2*sizes.padding;
-    let drawSizes:Sizes = {
-      width,
-      height
-    };
-    if(which !== undefined)
-      return drawSizes[which];
-
-    return drawSizes;
-  }
-  getRoot(){
+  public getRoot(){
     return this.root;
   }
-  getElement(){
-    return this.element;
+  public getElement(){
+    return this.subroot;
   }
-  node(){
-    return this.getRoot().node();
+  public call(callable:iD3Callable){
+    callable.action(this);
   }
 
-  placeIn(context:string|D3Component){
-    let target;
-    if(typeof context === "string")
-      target = d3.select(context);
-    else
-      target = context.getElement();
+  getDrawEdges(){
+    let left:number = this.left + this.padding;
+    let right:number = left + this.getDrawWidth();
+    let top:number = this.top + this.padding;
+    let bottom:number = top + this.getDrawHeight();
 
-    this.element = target.append(this.root)
-      .attr('id', this.name)
-      .attr('class', this.type);
-
-    return this;
+    return { left, right, top, bottom };
   }
-  call(func){
-    this.getElement().call(func);
-
-    return this;
+  getDrawWidth(fraction:number = 1)
+  {
+    return (this.width - 2*this.padding) * fraction;
   }
-  append(element){
-    this.getElement().append(element);
-
-    return this;
+  getDrawHeight(fraction:number = 1){
+    return (this.height - 2*this.padding) * fraction;
   }
 }

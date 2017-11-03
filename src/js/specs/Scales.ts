@@ -1,13 +1,11 @@
 declare var d3;
-import D3Subcomponent from '../components/D3Subcomponent';
 import Statistics from './Statistics';
 
 export default class Scales{
 
-  statistics:any = {
-  };
-  constructor(private component, private data){
-      this.statistics = Statistics.getInstance(data).getStatistics();
+  statistics:any = {};
+  constructor(private component){
+      this.statistics = Statistics.getInstance().getData();
   }
 
   getXScale(){
@@ -52,6 +50,27 @@ export default class Scales{
   }
   getClassScale(){
     return this.getClass;
+  }
+  getColorScale(){
+    let colorScale = d3.scaleLinear()
+      .domain([0, 100]);
+
+    return task=>{
+      console.log(task.classe);
+      if(task.classe == 1)
+        colorScale.range(['red', '#ffcccc']);
+
+      else if(task.classe == 0)
+        colorScale.range(['blue', '#ccccff']);
+
+      else
+        colorScale.range(['black', '#e6e6e6']);
+
+      return colorScale((task.independencia ? task.independencia : 50))
+    }
+  }
+  private independencia01(independencia0100){
+    return independencia0100/100;
   }
   private getClass(task){
     let classe = 'undefined ';
