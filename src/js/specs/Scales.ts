@@ -1,73 +1,15 @@
 declare var d3;
 import D3Subcomponent from '../components/D3Subcomponent';
+import Statistics from './Statistics';
 
 export default class Scales{
-  component:D3Subcomponent;
-  data:any[];
 
   statistics:any = {
   };
-  constructor(component:D3Subcomponent){
-    this.component = component;
-    this.data      = component.getData();
-
-    this.extractStatistics();
+  constructor(private component, private data){
+      this.statistics = Statistics.getInstance(data).getStatistics();
   }
-  private extractStatistics(){
 
-    this.taskStatistics();
-    this.dayBoundaries();
-
-  }
-  private taskStatistics(){
-    let data = this.data;
-
-    this.statistics.catList = [];
-    this.statistics.catCount = {};
-    this.statistics.taskList = [];
-    this.statistics.taskCount = {};
-
-    data.forEach(task=>{
-      let catName = task.categoriaName;
-      let taskName = task.taskName;
-
-      if(this.statistics.catCount[catName] === undefined)
-        this.statistics.catList.push(task.categoriaName);
-      if(this.statistics.taskCount[taskName] === undefined)
-        this.statistics.taskList.push({
-          id:task.task,
-          name:task.taskName
-        });
-
-      this.statistics.catCount[catName] = 1 + (this.statistics.catCount[catName] || 0)
-      this.statistics.taskCount[taskName] = 1 + (this.statistics.taskCount[taskName] || 0)
-    })
-  }
-  private dayBoundaries(){
-    // Arredondar hora inicial pra baixo
-    let data = this.data;
-    console.log(data);
-    let forma = d3.timeFormat("%H:%M");
-    console.log(forma(data[0].inicio));
-    const c = 1000 * 60 * 60;
-    let inicio = this.data[0].inicio.getTime();
-        inicio = Math.round(inicio/c) * c;
-        inicio = new Date(inicio);
-
-    let fim    = data.slice(-1)[0];
-        fim    = fim.inicio.getTime() + fim.duracao * (60 * 1000); // inicio + duracao
-        fim    = Math.ceil(fim/c) * c;
-        fim    = new Date(fim);
-
-    this.statistics['dayStartMin'] = inicio;
-    this.statistics['dayEndMin']   = fim;
-
-  }
-  private extractCategoriesList(){
-    this.data.map(task=>{
-      console.log(task);
-    });
-  }
   getXScale(){
     let drawEdges = this.component.getDrawEdges();
 
@@ -85,7 +27,6 @@ export default class Scales{
 
   getYScale(){
     let drawEdges = this.component.getDrawEdges();
-    let sizes  = this.component.getSizes();
     let domain = this.statistics.taskList.map(t=>t.name);
     let range  = [drawEdges.top, drawEdges.bottom];
 
@@ -94,22 +35,25 @@ export default class Scales{
               .range(range);
   }
   getWidthScale(){
-    let drawSizes = this.component.getDrawSizes();
+    let width = this.component.getDrawWidth();
     let diff   = this.ms2min(this.statistics['dayEndMin'].getTime() - this.statistics['dayStartMin'].getTime());
     let domain = [0, diff]
-    let range  = [0, drawSizes.width];
+    let range  = [0, width];
 
     return d3.scaleLinear()
               .domain(domain)
               .range(range);
   }
   getHeightScale(){
-    let drawHeight = this.component.getDrawSizes().height;
+    let drawHeight = this.component.getDrawHeight();
     let taskCount   = this.statistics.taskList.length;
 
     return ()=>drawHeight/(taskCount);
   }
-  getClass(task){
+  getClassScale(){
+    return this.getClass;
+  }
+  private getClass(task){
     let classe = 'undefined ';
 
     switch(task.classe){

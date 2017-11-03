@@ -12,11 +12,20 @@
 // @import "components/images";
 // @import "components/lists";
 
-
-svg.visualization{
+html{
+  font-family: sans-serif;
+}
+body{
+  position: relative;
+}
+svg{
   margin: 0 auto;
   display: block;
   box-shadow: 1px 1px 10px rgba(0,0,0,.25);
+}
+rect{
+  rx:5px;
+  ry:5px;
 }
 .ativo{
   fill: $color__ativo;
@@ -33,6 +42,54 @@ svg.visualization{
     stroke: #adadad;
   }
 }
-#task-axis .tick line {
-  stroke: #adadad;
+#time-axis .tick{
+  text{
+    font-size: 12px;
+  }
+  &:nth-child(even) text{
+    transform: translateY(10px);
+  }
+}
+#task-axis .tick {
+  text{
+    font-size: 15px;
+  }
+  line {
+    stroke: #adadad;
+  }
+}
+#tooltip{
+  h1{
+    margin:0;
+    text-align: center;
+    font-size: 21px;
+  }
+  h2{
+    margin:5px;
+    text-align: center;
+    font-size: 17px;
+  }
+  ul{
+    font-size: 16px;
+    margin:0;
+    padding:0;
+    opacity: 1;
+  }
+  opacity: 0;
+  $duration: .5s;
+  transition: opacity $duration, width $duration;
+  position: absolute;
+  background-color: white;
+  border-radius: 5px;
+  padding:0;
+  $width: 200px;
+  width: 0;
+  list-style-position: inside;
+  overflow: hidden;
+  white-space: nowrap;
+  &.shown{
+    padding:5px;
+    opacity: .8;
+    width: $width;
+  }
 }

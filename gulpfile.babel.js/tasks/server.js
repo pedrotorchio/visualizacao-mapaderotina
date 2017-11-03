@@ -27,7 +27,7 @@ export default () => {
         },
         port: 8080,
         open: true,
-        notify: false,
+        notify: true,
         scrollProportionally: true,
         ui: {
             port: 9000,

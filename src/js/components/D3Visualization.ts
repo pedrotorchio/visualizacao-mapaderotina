@@ -1,28 +1,28 @@
 declare var d3;
-import D3Component from './D3Component';
-import Sizes from './iSizes';
 /**
  * WRAPPER PARA SVG
  */
-export default class D3Visualization extends D3Component{
-    static type:string = 'visualization';
+export class D3Visualization{
     static root:string = 'svg';
 
+    // private context:string;
+    // private width:number;
+    // private height:number;
+    //
+    constructor(private context:string, private width:number, private height:number){}
 
-    constructor(name:string){
-      super(name, D3Visualization.type, D3Visualization.root);
-    }
-    setSizes(sizes:Sizes){
-      super.setSizes(sizes);
-      this.resize();
+    public makeSvg(){
+      return d3.select(this.context)
+        .append(D3Visualization.root)
 
-      return this;
+        .attr('width', this.width)
+        .attr('height', this.height);
     }
-    resize(){
-      this.getElement()
-        .attr('width', this.getSizes('width'))
-        .attr('height', this.getSizes('height'));
+    public getWidth(){
+      return this.width;
+    }
+    public getHeight(){
+      return this.height;
+    }
 
-      return this;
-    }
 }

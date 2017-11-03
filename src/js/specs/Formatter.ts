@@ -25,6 +25,8 @@ export default class Formatter{
       // pegar nomes das variaveis
       task = this.getDictionaryMeta(task);
       // parsear inicio em objecto Date
+      task.horario = task.inicio;
+      
       task.inicio = format(task.inicio);
 
       return task;
