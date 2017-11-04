@@ -21,18 +21,26 @@ export default class Formatter{
         format = dictionary.format.hora;
         format = d3.timeParse(format);
 
-    tasks.map(task=>{
+    let forma = d3.timeFormat("%H:%M");
+
+    tasks.map((task, i)=>{
+      task.id = i;
       // pegar nomes das variaveis
       task = this.getDictionaryMeta(task);
       // parsear inicio em objecto Date
-      task.horario = task.inicio;
+      task.horario = format(task.inicio);
 
-      task.inicio = format(task.inicio);
+      let fim;
+          fim = task.horario.getTime() + task.duracao * (60 * 1000);
+          fim = new Date(fim);
+          fim = forma(fim);
+
+      task.fim = fim;
 
       return task;
     });
     // ordenar por hora de inicio
-    tasks = tasks.sort((a,b)=>a.inicio-b.inicio);
+    tasks = tasks.sort((a,b)=>a.horario-b.horario);
 
     return tasks;
   }

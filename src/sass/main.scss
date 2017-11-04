@@ -1,16 +1,5 @@
-// // Common
+
 @import "variables";
-//
-//
-// // Base
-// @import "scaffolding";
-// @import "type";
-//
-//
-// // Modules
-// @import "components/buttons";
-// @import "components/images";
-// @import "components/lists";
 
 html{
   font-family: sans-serif;
@@ -26,13 +15,19 @@ svg{
 rect{
   rx:5px;
   ry:5px;
+  stroke-width:0px;
+  stroke:transparent;
+
+  transition: {
+    property: stroke-width, stroke;
+    duration: .2s;
+  }
+
+  &.selected{
+    stroke-width:5px;
+    stroke: #cddc39;
+  }
 }
-// .ativo{
-//   fill: $color__ativo;
-// }
-// .passivo{
-//   fill: $color__passivo;
-// }
 .axis .tick{
   line{
     stroke: #eaeaea;
@@ -75,20 +70,21 @@ rect{
     font-size: 16px;
     margin:0;
     padding:0;
-    opacity: 1;
+    opacity:1;
   }
   opacity: 1;
   $duration: .2s;
   transition: {
-    property: opacity,width,height,box-shadow;
-    duration: $duration*2, $duration;
+    property: opacity,box-shadow, max-width, max-height;
+    duration: $duration, $duration,$duration,$duration;
   }
   position: absolute;
   background-color: white;
   border-radius: 5px;
-  padding:0;
-  width: 0;
-  height: 0;
+  opacity: 0;
+  padding: 0px;
+  max-width: 0%;
+  max-height: 100%;
   list-style-position: inside;
   overflow: hidden;
   white-space: nowrap;
@@ -98,9 +94,9 @@ rect{
   justify-content: space-around;
 
   &.shown{
-    width: 200px;
-    height: 150px;
     padding:5px;
+    max-width: 100%;
+    max-height:100%;
     opacity: .8;
     box-shadow: 0px 0px 20px rgb(66, 66, 66);
 

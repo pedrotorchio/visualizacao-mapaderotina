@@ -1,6 +1,6 @@
 declare var d3;
 import Scales from '../specs/Scales';
-import {D3Tooltip, D3TimeAxis, D3Component, D3TaskAxis} from '.';
+import {D3Tooltip, D3TimeAxis, D3Component, D3TaskAxis, D3SelectionClick} from '.';
 
 export class D3GanttComponent extends D3Component{
   static type:string = 'gantt';
@@ -38,11 +38,12 @@ export class D3GanttComponent extends D3Component{
     .selectAll('.task-bar')
     .data(this.data).enter()
     .append('rect')
+    .attr('id', d=>`rect-${d.id}`)
     .attr('y', 0)
     .attr('x', 0)
     .attr('class', cScale)
     .attr('transform', d=>{
-      let time = d.inicio;
+      let time = d.horario;
           time = xScale(time);
       let task = d.taskName;
           task = yScale(task);
@@ -52,7 +53,8 @@ export class D3GanttComponent extends D3Component{
     .attr('fill', dScale)
     .attr('height', hScale)
     .attr('width', d=>wScale(d.duracao))
-    .call(D3Tooltip.getCallable());
+    .call(D3Tooltip.getCallable())
+    .call(D3SelectionClick.getCallable())
 
     this.call(new D3TimeAxis(xScale, 'time-axis'));
     this.call(new D3TaskAxis(yScale, 'task-axis'));

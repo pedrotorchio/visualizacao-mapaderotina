@@ -7,3 +7,4 @@ export * from './D3TimeAxis';
 export * from './D3TaskAxis';
 export * from './D3Tooltip';
 export * from './iD3Callable';
+export * from './D3SelectionClick';

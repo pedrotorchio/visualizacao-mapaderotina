@@ -6,9 +6,20 @@ export default class Statistics{
   statistics:any = {};
 
   private constructor(private data){
+    console.log(data);
     let count = new Counter('Extrair Estatísticas');
       this.extractStatistics();
     count.end();
+  }
+  public static newInstance(data){
+    let newinstance = null;
+
+    if(data.length == 0)
+      newinstance = Statistics.getInstance();
+    else
+      newinstance = new Statistics(data);
+
+    return newinstance;
   }
   public static getInstance(data?){
     if(Statistics.instance == null)
@@ -24,10 +35,16 @@ export default class Statistics{
   }
   private extractStatistics(){
 
+    this.order();
     this.taskStatistics();
     this.dayBoundaries();
 
   }
+
+  private order(){
+    this.data = this.data.sort((a,b)=>a.horario-b.horario);
+  }
+
   private taskStatistics(){
     let data = this.data;
 
@@ -35,8 +52,11 @@ export default class Statistics{
     this.statistics.catCount = {};
     this.statistics.taskList = [];
     this.statistics.taskCount = {};
+    this.statistics.duracao = 0;
 
     data.forEach(task=>{
+      this.statistics.duracao += task.duracao;
+
       let catName = task.categoriaName;
       let taskName = task.taskName;
 
@@ -53,19 +73,23 @@ export default class Statistics{
     })
   }
   private dayBoundaries(){
+
     // Arredondar hora inicial pra baixo
     let data = this.data;
-    console.log(data);
-    let forma = d3.timeFormat("%H:%M");
+
     const c = 1000 * 60 * 60;
-    let inicio = this.data[0].inicio.getTime();
+    let inicio = this.data[0]
+        this.statistics.inicio = inicio.inicio;
+        inicio = inicio.horario.getTime();
         inicio = Math.round(inicio/c) * c;
         inicio = new Date(inicio);
 
     let fim    = data.slice(-1)[0];
-        fim    = fim.inicio.getTime() + fim.duracao * (60 * 1000); // inicio + duracao
+        this.statistics.fim = fim.fim;
+        fim    = fim.horario.getTime() + fim.duracao * (60 * 1000);
         fim    = Math.ceil(fim/c) * c;
         fim    = new Date(fim);
+
 
     this.statistics['dayStartMin'] = inicio;
     this.statistics['dayEndMin']   = fim;

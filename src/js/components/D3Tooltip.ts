@@ -1,15 +1,14 @@
 declare var d3 : any;
-
+import Informative from '../lib/Informative';
 import {D3Component, iD3Callable} from '.';
+import Selection from '../specs/Selection';
 
-export class D3Tooltip{
-  selection; ul; h1; h2;
+export class D3Tooltip extends Informative{
+  locked:boolean = false;
   private static instance = null;
+
   private constructor(){
-    this.selection = d3.select('#tooltip');
-    this.ul = this.selection.select('ul');
-    this.h1 = this.selection.select('h1');
-    this.h2 = this.selection.select('h2');
+    super('#tooltip');
   }
   public static getInstance(){
     if(D3Tooltip.instance == null)
@@ -17,42 +16,25 @@ export class D3Tooltip{
 
       return D3Tooltip.instance;
   }
-  public setTitle(title:string){
-    this.h1.html(title);
 
-    return this;
-
+  public isLocked(){
+    return this.locked;
   }
-  public setSubtitle(title:string){
-    this.h2.html(title);
 
-    return this;
+  public showIn(x, y){
+    super.show();
 
-  }
-  public listItems(array){
-
-    array.forEach(item => {
-      this.ul.append('li').html(item);
-    })
-
-    return this;
-
-  }
-  public show(x, y){
-    this.selection
+    this.element
       .style('left', `${x}px`)
       .style('top', `${y}px`)
-      .classed('shown', true);
-      return this;
-  }
-  public hide(){
-    this.h1.html('');
-    this.h2.html('');
-    this.ul.html('');
-    this.selection
-      .classed('shown', false);
 
       return this;
+  }
+  public lock(){
+    this.locked = true;
+  }
+  public unlock(){
+    this.locked = false;
   }
   public static getCallable(){
     return D3Tooltip.callable;
@@ -63,7 +45,14 @@ export class D3Tooltip{
 
     selection
     .on('mouseover', d=>{
-      let dados = [`${d.duracao}min`]
+      if(tip.isLocked()) return;
+
+      let dados = [];
+
+      if(d.categoriaName)
+        dados.push(d.categoriaName);
+      if(d.duracao)
+        dados.push(`${d.duracao}min`);
       if(d.companhiaName)
         dados.push(d.companhiaName);
       if(d.simultaneaName)
@@ -74,12 +63,14 @@ export class D3Tooltip{
         dados.push(`Independência: ${d.independencia}%`);
 
       tip
-        .setTitle(`${d.taskName} ${d.horario}`)
-        .setSubtitle(d.categoriaName)
+        .setTitle(`${d.taskName}`)
+        .setSubtitle(`${d.inicio}-${d.fim}`)
         .listItems(dados)
-        .show(d3.event.pageX, d3.event.pageY);
+        .showIn(d3.event.pageX, d3.event.pageY);
     })
     .on('mouseout', d => {
+      if(tip.isLocked()) return;
+
       tip
         .hide();
     })

@@ -56,12 +56,11 @@ export default class Scales{
       .domain([0, 100]);
 
     return task=>{
-      console.log(task.classe);
       if(task.classe == 1)
-        colorScale.range(['red', '#ffcccc']);
+        colorScale.range(['blue', '#ccccff']);
 
       else if(task.classe == 0)
-        colorScale.range(['blue', '#ccccff']);
+        colorScale.range(['red', '#ffcccc']);
 
       else
         colorScale.range(['black', '#e6e6e6']);
