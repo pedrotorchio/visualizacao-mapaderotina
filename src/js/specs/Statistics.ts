@@ -6,10 +6,20 @@ export default class Statistics{
   statistics:any = {};
 
   private constructor(private data){
-    console.log(data);
     let count = new Counter('Extrair Estatísticas');
       this.extractStatistics();
+
+      console.log(this.statistics);
+
     count.end();
+  }
+  public static min2hrStr(min){
+    let hr:any = Math.floor(min/60);
+        hr = hr > 0 ? `${hr}h` : '';
+    let mn:any = min%60;
+        mn = mn > 0 ? `${mn}min` : '';
+
+    return hr + mn;
   }
   public static newInstance(data){
     let newinstance = null;
@@ -31,6 +41,7 @@ export default class Statistics{
     return Statistics.instance;
   }
   public getData(){
+
     return this.statistics;
   }
   private extractStatistics(){
@@ -49,9 +60,9 @@ export default class Statistics{
     let data = this.data;
 
     this.statistics.catList = [];
-    this.statistics.catCount = {};
     this.statistics.taskList = [];
-    this.statistics.taskCount = {};
+    let taskListAux:any = [];
+    this.statistics.taskNumber = data.length;
     this.statistics.duracao = 0;
 
     data.forEach(task=>{
@@ -59,18 +70,45 @@ export default class Statistics{
 
       let catName = task.categoriaName;
       let taskName = task.taskName;
+      let independencia = `${task.independencia}`;
+      let passividadeName = task.passividade;
 
-      if(this.statistics.catCount[catName] === undefined)
+      this.addDuracao('catDuration', catName, task.duracao);
+      this.addDuracao('taskDuration', taskName, task.duracao);
+      this.addDuracao('independenciaDuration', independencia, task.duracao);
+      this.addDuracao('passividadeDuration', passividadeName, task.duracao);
+
+      this.incrementCount('passividadeCount', passividadeName);
+      this.incrementCount('taskCount', taskName);
+      this.incrementCount('catCount', catName);
+      this.incrementCount('independenciaCount', independencia);
+
+      if(!this.statistics.catList.includes(task.categoriaName))
         this.statistics.catList.push(task.categoriaName);
-      if(this.statistics.taskCount[taskName] === undefined)
+
+      if(!taskListAux.includes(task.task))
         this.statistics.taskList.push({
           id:task.task,
           name:task.taskName
         });
+      taskListAux.push(task.task);
+    });
+    // calcular media da independencia
+    // contar classe
+  }
+  private incrementCount(stat, name){
+    if(this.statistics[stat] === undefined)
+      this.statistics[stat] = {};
 
-      this.statistics.catCount[catName] = 1 + (this.statistics.catCount[catName] || 0)
-      this.statistics.taskCount[taskName] = 1 + (this.statistics.taskCount[taskName] || 0)
-    })
+    let last  = (this.statistics[stat][name] || 0);
+    this.statistics[stat][name] = 1 + last;
+  }
+  private addDuracao(stat, name, duracao){
+    if(this.statistics[stat] === undefined)
+      this.statistics[stat] = {};
+
+    let last = (this.statistics[stat][name] || 0);
+    this.statistics[stat][name] = duracao + last;
   }
   private dayBoundaries(){
 

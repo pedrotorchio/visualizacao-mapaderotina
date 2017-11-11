@@ -30,6 +30,8 @@ export default class Formatter{
       // parsear inicio em objecto Date
       task.horario = format(task.inicio);
 
+      task.passividade = task.classe == 1 ? 'Ativo':'Passivo';
+
       let fim;
           fim = task.horario.getTime() + task.duracao * (60 * 1000);
           fim = new Date(fim);

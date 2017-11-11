@@ -35,7 +35,14 @@ export default class App{
 
     let time = new Counter('Gerar visualizações');
 
-    new Gantt(this.diary, '#app');
+    new Gantt(this.diary, '#app')
+        .selectionCallback(ev=>{
+          console.log('independência pizza');
+        })
+        .selectionCallback(ev=>{
+          console.log('passividade pizza');
+        })
+        .build();
 
     time.end();
   }

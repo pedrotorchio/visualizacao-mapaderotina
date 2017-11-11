@@ -4,14 +4,13 @@ import {D3GanttComponent} from './components/D3GanttComponent';
 
 export class Gantt{
 
-  width:number = 1000;
-  height:number = 600;
+  width:number = 1024;
+  height:number = 480;
   padding:number = 10;
 
-  constructor(private data:any, private context:string){
-    this.rebuild();
-  }
-  rebuild(){
+  constructor(private data:any, private context:string){}
+
+  build(){
 
     const GANTT_WIDTH_FRACTION = .9;
 
@@ -40,5 +39,13 @@ export class Gantt{
   }
   getDrawHeight(fraction:number = 1){
     return (this.height - 2*this.padding) * fraction;
+  }
+
+  selectionCallback(callback){
+    document
+      .getElementsByTagName('body')[0]
+      .addEventListener('toggleSelection', callback);
+
+    return this;
   }
 }

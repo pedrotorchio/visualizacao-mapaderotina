@@ -8,14 +8,15 @@ export default class Counter{
       this.start();
   }
   start(){
-    console.info(this.titulo);
+    console.groupCollapsed(this.titulo);
     this.startTime = performance.now();
   }
   end(){
     this.endTime   = performance.now();
 
     console.info(
-      `${this.titulo} levou ${this.endTime - this.startTime}ms`
+      `${this.titulo} levou ${(this.endTime - this.startTime).toFixed(3)}ms`
     );
+    console.groupEnd();
   }
 }

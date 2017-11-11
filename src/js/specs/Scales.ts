@@ -53,7 +53,7 @@ export default class Scales{
   }
   getColorScale(){
     let colorScale = d3.scaleLinear()
-      .domain([0, 100]);
+      .domain([1, 7]);
 
     return task=>{
       if(task.classe == 1)

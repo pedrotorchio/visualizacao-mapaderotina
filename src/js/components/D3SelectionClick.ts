@@ -1,4 +1,5 @@
 import Selection from '../specs/Selection';
+import Informer from '../specs/Informer';
 
 export class D3SelectionClick{
 
@@ -10,13 +11,12 @@ export class D3SelectionClick{
   private static callable(element){
     let selection = Selection.getInstance();
 
-
+    selection.toggleSelection();
     element
       .on('click', (d, index, group)=>{
 
         selection.toggleSelection(d);
 
-        console.log(selection.getStatistics());
       });
   }
 }

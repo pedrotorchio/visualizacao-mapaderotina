@@ -10,7 +10,7 @@
       "duracao": 20,
       "local": 2,
       "companhia": 0,
-      "independencia": 25,
+      "independencia": 2,
       "simultanea": "",
       "classe": 1
     },
@@ -20,7 +20,7 @@
       "duracao": 10,
       "local": 2,
       "companhia": 0,
-      "independencia": 25,
+      "independencia": 2,
       "simultanea": "",
       "classe": 1
     },
@@ -30,7 +30,7 @@
       "duracao": 10,
       "local": 3,
       "companhia": 0,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 1
     },
@@ -40,7 +40,7 @@
       "duracao": 30,
       "local": 4,
       "companhia": 0,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 1
     },
@@ -50,7 +50,7 @@
       "duracao": 30,
       "local": 4,
       "companhia": 0,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 1
     },
@@ -60,7 +60,7 @@
       "duracao": 30,
       "local": 4,
       "companhia": 0,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 1
     },
@@ -70,7 +70,7 @@
       "duracao": 30,
       "local": 4,
       "companhia": 0,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 1
     },
@@ -80,7 +80,7 @@
       "duracao": 135,
       "local": 4,
       "companhia": 0,
-      "independencia": 75,
+      "independencia": 6,
       "simultanea": "",
       "classe": 1
     },
@@ -90,7 +90,7 @@
       "duracao": 120,
       "local": 4,
       "companhia": 0,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 0
     },
@@ -100,7 +100,7 @@
       "duracao": 120,
       "local": 4,
       "companhia": 0,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 1
     },
@@ -110,7 +110,7 @@
       "duracao": 120,
       "local": 4,
       "companhia": 0,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 1
     },
@@ -120,7 +120,7 @@
       "duracao": 45,
       "local": 4,
       "companhia": 7,
-      "independencia": 50,
+      "independencia": 4,
       "simultanea": "",
       "classe": 1
     },
@@ -130,7 +130,7 @@
       "duracao": 30,
       "local": 3,
       "companhia": "",
-      "independencia": "",
+      "independencia": 6,
       "simultanea": "",
       "classe": 1
     }

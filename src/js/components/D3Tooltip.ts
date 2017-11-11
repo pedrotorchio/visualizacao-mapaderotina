@@ -2,6 +2,7 @@ declare var d3 : any;
 import Informative from '../lib/Informative';
 import {D3Component, iD3Callable} from '.';
 import Selection from '../specs/Selection';
+import Statistics from '../specs/Statistics';
 
 export class D3Tooltip extends Informative{
   locked:boolean = false;
@@ -42,7 +43,7 @@ export class D3Tooltip extends Informative{
   private static callable(selection){
 
     let tip = D3Tooltip.getInstance();
-
+    let stats = Statistics.getInstance();
     selection
     .on('mouseover', d=>{
       if(tip.isLocked()) return;
@@ -60,12 +61,13 @@ export class D3Tooltip extends Informative{
       if(d.localName)
         dados.push(d.localName);
       if(d.independencia)
-        dados.push(`Independência: ${d.independencia}%`);
+        dados.push(`Independência: ${d.independencia}`);
 
       tip
+        .clear()
         .setTitle(`${d.taskName}`)
         .setSubtitle(`${d.inicio}-${d.fim}`)
-        .listItems(dados)
+        .addList(dados)
         .showIn(d3.event.pageX, d3.event.pageY);
     })
     .on('mouseout', d => {
