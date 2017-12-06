@@ -6,7 +6,7 @@ export default class Informative{
 
   protected constructor(selector){
 
-    this.element = d3.select(selector);
+    this.element = d3.select(selector).classed('informative', true);
     this.h1 = this.element.select('h1');
     this.h2 = this.element.select('h2');
     this.div = this.element.select('div');

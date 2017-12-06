@@ -13,7 +13,7 @@ export abstract class D3AxisComponent implements iD3Callable{
     let y = this.getYTranslate(element);
 
     element.getRoot()
-    .append('g')
+    .insert('g', ':first-child')
     .attr('id', this.id)
     .attr('class', `axis ${this.classes}`)
     .attr('transform', `translate(${x}, ${y})`)

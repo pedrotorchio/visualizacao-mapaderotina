@@ -1,18 +1,18 @@
-
 import {D3Visualization} from './components/D3Visualization';
 import {D3GanttComponent} from './components/D3GanttComponent';
-export class Gantt{
+import {pizza_independencia, colorScale1a7blue, convertIndependenciaData} from './lib/pizza';
+export class Pizzas{
 
   width:number = 1024;
   height:number = 480;
+  top:number = 0;
+  left:number = 0;
   padding:number = 10;
 
   constructor(private data:any, private context:string){}
 
   build(){
-    console.log('Gerando Gantt');
-
-    const GANTT_WIDTH_FRACTION = .9;
+    console.log('Gerando Pizzas');
 
     let svg = new D3Visualization(
       this.context,
@@ -20,17 +20,9 @@ export class Gantt{
       this.height
     ).makeSvg();
 
-    let gantt = new D3GanttComponent(this.data)
-        .setSize(
-          this.getDrawWidth(GANTT_WIDTH_FRACTION),
-          this.getDrawHeight()
-        )
-        .setPosition(
-          this.getDrawWidth(1-GANTT_WIDTH_FRACTION),
-          0
-        )
-        .placeIn(svg);
 
+    let pizzaIndData = convertIndependenciaData(this.data);
+    pizza_independencia(svg, pizzaIndData, 200, 600, colorScale1a7blue);
   }
   setSize(width, height){
     this.width = width;
@@ -45,7 +37,11 @@ export class Gantt{
   getDrawHeight(fraction:number = 1){
     return (this.height - 2*this.padding) * fraction;
   }
-
+  setPosition(x, y){
+    this.top = y;
+    this.left = x;
+    return this;
+  }
   selectionCallback(callback){
     document
       .getElementsByTagName('body')[0]

@@ -1,18 +1,23 @@
+
 declare var d3;
-import * as $ from 'jquery';
 import Counter from './lib/Counter';
 import Statistics from './specs/Statistics';
 import Formatter from './specs/Formatter';
 import {Gantt} from './Gantt';
+import {Pizzas} from './Pizzas';
+import * as SS  from 'screen-size';
+import Informative from './lib/Informative';
 
 
-export default class App{
+export default class App extends Informative{
   private diary:any[];
   private meta;
   private dictionary;
   private dictionaryUrl:string = '/assets/dictionary.json';
 
-  constructor(){
+  constructor(selector){
+    super(selector);
+
     this.diary = [];
     this.meta = {};
 
@@ -32,17 +37,23 @@ export default class App{
     });
   }
   updateCharts(){
-
+    let size = SS();
     let time = new Counter('Gerar visualizações');
 
     new Gantt(this.diary, '#app')
+        .setSize(size.x*.9, size.y*.4)
         .selectionCallback(ev=>{
-          console.log('independência pizza');
+          console.log('Gerando Independência Pizza');
         })
         .selectionCallback(ev=>{
-          console.log('passividade pizza');
+          console.log('Gerando Passividade Pizza');
         })
         .build();
+
+    new Pizzas(Statistics.getInstance().getData().independenciaDuration, '#app')
+        .setPosition(0, size.y)
+        .build();
+
 
     time.end();
   }
@@ -80,5 +91,8 @@ export default class App{
     }
     private setMeta(meta:any){
       this.meta = meta;
+
+      this.setTitle(meta.nome);
+      this.setSubtitle(`${meta.idade} anos`);
     }
   }

@@ -1,23 +1,31 @@
-
+@import "reset-css/_reset";
 @import "variables";
+@import "components/vizu";
 
 html{
   font-family: sans-serif;
+  color: #4c4242;
+  font-weight: 400;
+}
+h1,h2,h3,h4{
+  font-weight: 600;
 }
 body{
   position: relative;
+  margin: 0;
+  padding:0;
 }
 svg{
   margin: 0 auto;
   display: block;
   // box-shadow: 1px 1px 10px rgba(0,0,0,.25);
 }
-rect{
+#gantt rect{
   rx:5px;
   ry:5px;
   stroke-width:0px;
   stroke:transparent;
-
+  opacity: .8;
   transition: {
     property: stroke-width, stroke;
     duration: .2s;
@@ -50,6 +58,7 @@ rect{
     font-size: 15px;
   }
   line {
+    stroke-width: 1.5px;
     stroke: #adadad;
   }
 }
@@ -101,4 +110,19 @@ rect{
     box-shadow: 0px 0px 20px rgb(66, 66, 66);
 
   }
+}
+#cabecalho{
+  margin: 20px 0;
+  color:inherit;
+  h1, h2{
+    text-align: center;
+  }
+  h1{
+    font-size: 30px;
+  }
+}
+ul{
+  padding-left: 1em;
+  list-style: disc;
+  list-style-position: inside;
 }

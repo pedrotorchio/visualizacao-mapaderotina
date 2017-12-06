@@ -41,7 +41,9 @@ export default () => {
         .src(sharedPaths.stylesMainSrcFiles)
         .pipe(plumber({errorHandler: sharedEvents.onError}))
         .pipe(gulpif(process.env.GULP_SOURCEMAPS === 'true', sourcemaps.init()))
-        .pipe(sass())
+        .pipe(sass({
+          includePaths:['node_modules']
+        }))
         .pipe(postcss([autoprefixer(autoprefixerConfig)]))
         .pipe(gulpif(process.env.GULP_SOURCEMAPS === 'true', sourcemaps.write()))
         .pipe(gulpif(process.env.GULP_CSSO === 'true', csso()))
