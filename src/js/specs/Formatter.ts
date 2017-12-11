@@ -22,7 +22,7 @@ export default class Formatter{
         format = d3.timeParse(format);
 
     let forma = d3.timeFormat("%H:%M");
-
+    
     tasks.map((task, i)=>{
       task.id = i;
       // pegar nomes das variaveis

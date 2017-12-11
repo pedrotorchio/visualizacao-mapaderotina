@@ -1,10 +1,13 @@
 declare var d3;
+
+
 import Counter from './lib/Counter';
 import Statistics from './specs/Statistics';
 import Formatter from './specs/Formatter';
 import {Gantt} from './Gantt';
 import * as SS  from 'screen-size';
 import Informative from './lib/Informative';
+import Informer from './specs/Informer';
 import {makePizzaToolTip, appendPizzaTo} from './lib/PizzaCreator';
 import {startLoading, endLoading} from './lib/Loading';
 import {D3Visualization} from './components/D3Visualization';
@@ -38,6 +41,7 @@ export default class App extends Informative{
     });
   }
   updateCharts(){
+    Informer.getInstance().clear();
     let size = SS();
 
     let time = new Counter('Gerar visualizações');
@@ -60,8 +64,10 @@ export default class App extends Informative{
       pizzaSide,
       pizzaSide
     ).makeSvg();
+    let ganttContext = '#gantt-container';
+    document.querySelector(ganttContext).innerHTML = '';
 
-    new Gantt(this.diary, '#gantt-container')
+    new Gantt(this.diary, ganttContext)
         .setSize(appWidth, size.y*.4)
 
         .selectionCallback(ev=>{
@@ -101,7 +107,7 @@ export default class App extends Informative{
         .build();
 
     endLoading(context);
-
+    this.loaded();
     time.end();
   }
   /*****
@@ -113,6 +119,8 @@ export default class App extends Informative{
       /**
        * desencadeia a geração da visualização
        */
+
+
       let time  = new Counter('Setar dados');
       let formatter = new Formatter(data.tasks, this.dictionary);
 
@@ -169,5 +177,8 @@ export default class App extends Informative{
       let pizza = appendPizzaTo(svg, data, config);
 
       return pizza;
+    }
+    public loaded(){
+
     }
   }

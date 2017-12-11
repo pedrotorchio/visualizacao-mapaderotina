@@ -135,10 +135,17 @@ ul{
   list-style-position: inside;
 }
 .slideInBtn{
-cursor: pointer;
+  left: -400px;
+  &[data-use]{
+    left: 0;
+  }
+  &.hidden{
+    left: -400px;
+  }
+  cursor: pointer;
   transition: left 1s;
   position: fixed;
-  left: 0;
+
   height: 30px;
   padding: 10px 10px;
   line-height: 30px;
@@ -146,6 +153,8 @@ cursor: pointer;
   text-transform: uppercase;
   background-color: black;
 }
+
+
 .slideInContent{
   &.shown{
     left: 0;
@@ -161,10 +170,6 @@ cursor: pointer;
   padding-bottom: 5px;
 }
 nav#menu{
-
-  &.hidden li{
-    left: -400px;
-  }
 
   li{
     list-style: none;
@@ -186,7 +191,7 @@ nav li, .slideInContent{
 
 #subject-switcher{
 }
-#informer{
+.slideInContent{
   .center, h1, h2{
     text-align: center;
   }
@@ -248,4 +253,13 @@ nav li, .slideInContent{
   100%{
     background-color:blue;
   }
+}
+select{
+  width: 300px;
+  height: 50px;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+  border: 5px solid black;
 }

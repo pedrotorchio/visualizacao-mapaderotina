@@ -22,7 +22,7 @@
         </header>
         <nav id="menu">
             <li class="slideInBtn" data-target="#informer">Detalhes</li>
-            <li class="slideInBtn" data-target="#subject-switcher">Paciente</li>
+            <li class="slideInBtn" data-use data-target="#subject-switcher">Paciente</li>
         </nav>
         <article id="app">
             <div id='gantt-container'>
@@ -39,16 +39,20 @@
             </div>
         </article>
         <section id="informer" class="slideInContent">
+
             <h1></h1>
             <h2></h2>
             <div></div>
 
         </section>
         <section id="subject-switcher" class="slideInContent">
-            <h1></h1>
+
+            <h1>Paciente</h1>
             <h2></h2>
             <div></div>
-            <select name="" id=""></select>
+            <select name="" id="">
+              <option value="" disabled selected>Escolha Paciente</option>
+            </select>
 
         </section>
         <article id="tooltip">
@@ -56,21 +60,10 @@
             <h2></h2>
             <div></div>
         </article>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-        <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyBpNONgqbuTQYD7LUMa3_DYo0anRPji7IM",
-                authDomain: "timediary-cin.firebaseapp.com",
-                databaseURL: "https://timediary-cin.firebaseio.com",
-                projectId: "timediary-cin",
-                storageBucket: "",
-                messagingSenderId: "159613667535"
-            };
-            firebase.initializeApp(config);
-        </script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script> -->
+        <script src="/assets/d3.min.js"></script>
+        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script> -->
+
         <!-- inject:js -->
         <!-- endinject -->
     </body>
