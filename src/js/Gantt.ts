@@ -21,6 +21,7 @@ export class Gantt{
     ).makeSvg();
 
     let gantt = new D3GanttComponent(this.data)
+
         .setSize(
           this.getDrawWidth(GANTT_WIDTH_FRACTION),
           this.getDrawHeight()

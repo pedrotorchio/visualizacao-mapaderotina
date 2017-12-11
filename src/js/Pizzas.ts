@@ -1,6 +1,6 @@
 import {D3Visualization} from './components/D3Visualization';
 import {D3GanttComponent} from './components/D3GanttComponent';
-import {pizza_independencia, colorScale1a7blue, convertIndependenciaData} from './lib/pizza';
+import {pizza_independencia, colorScale1a7blue, convertIndependenciaData, } from './lib/pizza';
 export class Pizzas{
 
   width:number = 1024;
@@ -20,9 +20,7 @@ export class Pizzas{
       this.height
     ).makeSvg();
 
-
-    let pizzaIndData = convertIndependenciaData(this.data);
-    pizza_independencia(svg, pizzaIndData, 200, 600, colorScale1a7blue);
+    let pizzaIndData = convertIndependenciaData(this.data.independencia);
   }
   setSize(width, height){
     this.width = width;

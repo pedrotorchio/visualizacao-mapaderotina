@@ -1,13 +1,14 @@
-
 declare var d3;
 import Counter from './lib/Counter';
 import Statistics from './specs/Statistics';
 import Formatter from './specs/Formatter';
 import {Gantt} from './Gantt';
-import {Pizzas} from './Pizzas';
 import * as SS  from 'screen-size';
 import Informative from './lib/Informative';
-
+import {makePizzaToolTip, appendPizzaTo} from './lib/PizzaCreator';
+import {startLoading, endLoading} from './lib/Loading';
+import {D3Visualization} from './components/D3Visualization';
+import Scales from './specs/Scales';
 
 export default class App extends Informative{
   private diary:any[];
@@ -38,22 +39,68 @@ export default class App extends Informative{
   }
   updateCharts(){
     let size = SS();
-    let time = new Counter('Gerar visualizações');
 
-    new Gantt(this.diary, '#app')
-        .setSize(size.x*.9, size.y*.4)
+    let time = new Counter('Gerar visualizações');
+    let context = '#app';
+    startLoading(context);
+
+    let appWidth = size.x*.8;
+
+    let pizzaSide  = appWidth / 4;
+
+    document.getElementById('pizzas-container').style.paddingLeft = `${appWidth*.05}px`;
+
+    let pizza1Svg = new D3Visualization(
+      '#pizza-1',
+      pizzaSide,
+      pizzaSide
+    ).makeSvg();
+    let pizza2vg = new D3Visualization(
+      '#pizza-2',
+      pizzaSide,
+      pizzaSide
+    ).makeSvg();
+
+    new Gantt(this.diary, '#gantt-container')
+        .setSize(appWidth, size.y*.4)
+
         .selectionCallback(ev=>{
           console.log('Gerando Independência Pizza');
+
+          let data = ev.detail.stats.independenciaDuration;
+
+          let color = Scales.getColorBlueScale();
+
+          let pizza1 = this.makePizza('#pizza-1', 'Independência', data, {
+            color: (ind)=>color(ind.key),
+            side: pizzaSide,
+            id: 'pizza-independencia'
+          });
         })
         .selectionCallback(ev=>{
           console.log('Gerando Passividade Pizza');
+
+
+          let data = ev.detail.stats.passividadeDuration;
+
+          let color = Scales.getColorBlueScale();
+
+          let pizza2 = this.makePizza('#pizza-2', 'Passividade', data, {
+            color: (pass)=>{
+
+              if(pass.key == 'Ativo')
+                return 'blue';
+
+              return 'red';
+            },
+            side: pizzaSide,
+            id: 'pizza-passividade'
+          });
+
         })
         .build();
 
-    new Pizzas(Statistics.getInstance().getData().independenciaDuration, '#app')
-        .setPosition(0, size.y)
-        .build();
-
+    endLoading(context);
 
     time.end();
   }
@@ -94,5 +141,33 @@ export default class App extends Informative{
 
       this.setTitle(meta.nome);
       this.setSubtitle(`${meta.idade} anos`);
+    }
+
+    public objectToArray(object){
+      let resultingArray = [];
+      for (var property in object) {
+        if (object.hasOwnProperty(property)) {
+            resultingArray.push({
+              key: property,
+              value: object[property]
+            });
+        }
+      }
+      return resultingArray;
+    }
+    public makePizza(context, title:string, data:any[], config){
+      config.raio = config.side/2;
+
+      document.querySelector(`${context} h3`).innerHTML = title;
+
+      let svg    = d3.select(`${context} svg`);
+          data   = this.objectToArray(data);
+      let side   = config.side;
+
+
+
+      let pizza = appendPizzaTo(svg, data, config);
+
+      return pizza;
     }
   }

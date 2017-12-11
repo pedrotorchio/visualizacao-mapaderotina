@@ -4,11 +4,11 @@ import {D3Tooltip, D3TimeAxis, D3Component, D3TaskAxis, D3SelectionClick} from '
 
 export class D3GanttComponent extends D3Component{
   static type:string = 'gantt';
-  width:number;
-  height:number;
-  padding:number;
-  top:number = 0;
-  left:number = 0;
+  // width:number;
+  // height:number;
+  // padding:number;
+  // top:number = 0;
+  // left:number = 0;
   root:any;
   gantt:any;
 
@@ -42,6 +42,8 @@ export class D3GanttComponent extends D3Component{
     .attr('y', 0)
     .attr('x', 0)
     .attr('class', cScale)
+    .call(D3Tooltip.getCallable())
+    .call(D3SelectionClick.getCallable())
     .attr('transform', d=>{
       let time = d.horario;
           time = xScale(time);
@@ -52,9 +54,15 @@ export class D3GanttComponent extends D3Component{
     })
     .attr('fill', dScale)
     .attr('height', hScale)
+    .transition()
+    .delay(function(d,i) {
+      return i * 100; })
+    .duration(function(d){
+      let duration = Math.max(d.duracao * 5, 100);
+      return duration;
+    })
     .attr('width', d=>wScale(d.duracao))
-    .call(D3Tooltip.getCallable())
-    .call(D3SelectionClick.getCallable())
+
 
     this.call(new D3TimeAxis(xScale, 'time-axis'));
     this.call(new D3TaskAxis(yScale, 'task-axis'));

@@ -68,6 +68,13 @@ export default class Scales{
       return colorScale((task.independencia ? task.independencia : 50))
     }
   }
+  public static getColorBlueScale(){
+    let colorScale = d3.scaleLinear()
+      .domain([1, 7])
+      .range(['blue', '#ccccff']);
+
+    return colorScale;
+  }
   private independencia01(independencia0100){
     return independencia0100/100;
   }

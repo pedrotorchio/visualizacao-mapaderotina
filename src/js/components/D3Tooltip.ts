@@ -10,6 +10,7 @@ export class D3Tooltip extends Informative{
 
   private constructor(){
     super('#tooltip');
+    this.element.classed('tooltip', true);
   }
   public static getInstance(){
     if(D3Tooltip.instance == null)
@@ -26,8 +27,8 @@ export class D3Tooltip extends Informative{
     super.show();
 
     this.element
-      .style('left', `${x}px`)
-      .style('top', `${y}px`)
+      .style('left', `${x + 15}px`)
+      .style('top', `${y + 15}px`)
 
       return this;
   }
@@ -45,7 +46,7 @@ export class D3Tooltip extends Informative{
     let tip = D3Tooltip.getInstance();
     let stats = Statistics.getInstance();
     selection
-    .on('mouseover', d=>{
+    .on('mousemove', d=>{
       if(tip.isLocked()) return;
 
       let dados = [];

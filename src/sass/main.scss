@@ -20,6 +20,14 @@ svg{
   display: block;
   // box-shadow: 1px 1px 10px rgba(0,0,0,.25);
 }
+#pizzas-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+#pizzas-container svg{
+  margin: 0 50px;
+}
 #gantt rect{
   rx:5px;
   ry:5px;
@@ -62,7 +70,7 @@ svg{
     stroke: #adadad;
   }
 }
-#tooltip{
+.tooltip{
   h1{
     margin:0;
     text-align: center;
@@ -125,4 +133,119 @@ ul{
   padding-left: 1em;
   list-style: disc;
   list-style-position: inside;
+}
+.slideInBtn{
+cursor: pointer;
+  transition: left 1s;
+  position: fixed;
+  left: 0;
+  height: 30px;
+  padding: 10px 10px;
+  line-height: 30px;
+  color: white;
+  text-transform: uppercase;
+  background-color: black;
+}
+.slideInContent{
+  &.shown{
+    left: 0;
+  }
+  cursor: pointer;
+  overflow: hidden;
+  transition: left 1s;
+  position: fixed;
+  top: 70px;
+  left: -400px;
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, .95);
+  padding-bottom: 5px;
+}
+nav#menu{
+
+  &.hidden li{
+    left: -400px;
+  }
+
+  li{
+    list-style: none;
+  }
+}
+nav li, .slideInContent{
+  &:nth-of-type(1){
+    top: 20px
+  }
+}
+@for $i from 2 through 4{
+  nav li, .slideInContent{
+    &:nth-of-type(#{$i}){
+      $top: 30px + ($i - 1) * 50;
+      top: $top;
+    }
+  }
+}
+
+#subject-switcher{
+}
+#informer{
+  .center, h1, h2{
+    text-align: center;
+  }
+  .space, h1, h2{
+    margin: .2em 0;
+  }
+  .uppercase, h3{
+    text-transform: uppercase;
+  }
+  .tarja, h1{
+    background-color: black;
+    color: white;
+    padding: .2em;
+    font-weight: 200;
+  }
+  .leftSpace, h3, ul{
+    margin-left: 1em;
+  }
+  h1{
+    font-size: 1.5em;
+  }
+  h2{
+    font-size: 1.3em;
+  }
+  h3{
+    font-size: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  li{
+    margin: .4em 5px .4em 0;
+    font-size: 1.2em;
+  }
+}
+
+.loading{
+  position: relative;
+  transition: filter 1s;
+  filter: blur(10px);
+  &:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: transparent;
+    animation:{
+      name: loading;
+      duration: 1s;
+      iteration-count: infinite;
+      direction: alternate;
+    }
+
+  }
+}
+@keyframes loading{
+  0%{
+    background-color:red;
+  }
+  100%{
+    background-color:blue;
+  }
 }
