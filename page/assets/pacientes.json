@@ -155,13 +155,13 @@
       },
       {
         "task": 2,
-        "inicio": "08:20",
+        "inicio": "08:00",
         "duracao": 10,
         "local": 2,
         "companhia": 0,
         "independencia": 2,
         "simultanea": "",
-        "classe": 1
+        "classe": 0
       },
       {
         "task": 3,
@@ -191,7 +191,7 @@
         "companhia": 0,
         "independencia": 4,
         "simultanea": "",
-        "classe": 1
+        "classe": 0
       },
       {
         "task": 5,
@@ -216,12 +216,12 @@
       {
         "task": 7,
         "inicio": "9:45",
-        "duracao": 135,
+        "duracao": 100,
         "local": 4,
         "companhia": 0,
         "independencia": 6,
         "simultanea": "",
-        "classe": 1
+        "classe": 0
       },
       {
         "task": 7,
@@ -239,9 +239,9 @@
         "duracao": 120,
         "local": 4,
         "companhia": 0,
-        "independencia": 4,
+        "independencia": 3,
         "simultanea": "",
-        "classe": 1
+        "classe": 0
       },
       {
         "task": 9,
@@ -256,10 +256,10 @@
       {
         "task": 16,
         "inicio": "17:30",
-        "duracao": 45,
+        "duracao": 30,
         "local": 4,
         "companhia": 7,
-        "independencia": 4,
+        "independencia": 5,
         "simultanea": "",
         "classe": 1
       },
@@ -287,14 +287,14 @@
         "duracao": 20,
         "local": 2,
         "companhia": 0,
-        "independencia": 2,
+        "independencia": 1,
         "simultanea": "",
-        "classe": 1
+        "classe": 0
       },
       {
         "task": 2,
         "inicio": "08:20",
-        "duracao": 10,
+        "duracao": 40,
         "local": 2,
         "companhia": 0,
         "independencia": 2,
@@ -307,19 +307,9 @@
         "duracao": 10,
         "local": 3,
         "companhia": 0,
-        "independencia": 4,
+        "independencia": 3,
         "simultanea": "",
-        "classe": 1
-      },
-      {
-        "task": 19,
-        "inicio": "08:30",
-        "duracao": 30,
-        "local": 4,
-        "companhia": 0,
-        "independencia": 4,
-        "simultanea": "",
-        "classe": 1
+        "classe": 0
       },
       {
         "task": 4,
@@ -349,7 +339,7 @@
         "companhia": 0,
         "independencia": 4,
         "simultanea": "",
-        "classe": 1
+        "classe": 0
       },
       {
         "task": 7,
@@ -377,7 +367,7 @@
         "duracao": 120,
         "local": 4,
         "companhia": 0,
-        "independencia": 4,
+        "independencia": 2,
         "simultanea": "",
         "classe": 1
       },
@@ -399,7 +389,7 @@
         "companhia": 7,
         "independencia": 4,
         "simultanea": "",
-        "classe": 1
+        "classe": 0
       },
       {
         "task": 20,
