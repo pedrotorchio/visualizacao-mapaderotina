@@ -18,7 +18,7 @@ $(()=>{
 
   })
 
-  d3.json('/assets/pacientes.json', data=>{
+  d3.json('assets/pacientes.json', data=>{
     dataRecovered(data);
   });
 });

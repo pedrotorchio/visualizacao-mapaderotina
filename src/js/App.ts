@@ -17,7 +17,7 @@ export default class App extends Informative{
   private diary:any[];
   private meta;
   private dictionary;
-  private dictionaryUrl:string = '/assets/dictionary.json';
+  private dictionaryUrl:string = 'assets/dictionary.json';
 
   constructor(selector){
     super(selector);
