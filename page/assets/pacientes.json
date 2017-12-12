@@ -236,7 +236,7 @@
       {
         "task": 7,
         "inicio": "19:00",
-        "duracao": 120,
+        "duracao": 90,
         "local": 4,
         "companhia": 0,
         "independencia": 3,
@@ -354,7 +354,7 @@
       {
         "task": 7,
         "inicio": "13:00",
-        "duracao": 120,
+        "duracao": 45,
         "local": 4,
         "companhia": 0,
         "independencia": 4,
@@ -364,7 +364,7 @@
       {
         "task": 7,
         "inicio": "19:00",
-        "duracao": 120,
+        "duracao": 30,
         "local": 4,
         "companhia": 0,
         "independencia": 2,
