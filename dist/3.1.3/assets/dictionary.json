@@ -1,0 +1,79 @@
+{
+  "format":{
+    "hora": "%H:%M"
+  },
+  "local":{
+    "1": "WC Social",
+    "2": "WC Suíte",
+    "3": "Quarto",
+    "4": "Sala",
+    "5": "Cozinha",
+    "6": "Condomínio",
+    "7": "Externo",
+    "8": "Casa Terceiro"
+  },
+  "companhia":{
+    "0": "Sozinho",
+    "1": "Empregada Doméstica",
+    "2": "Empregado Outro",
+    "3": "Filho",
+    "4": "Neto",
+    "5": "Amigo",
+    "6": "Colega",
+    "7": "Terapeuta"
+  },
+  "independencia":{
+    
+  },
+  "task":{
+    "1": "Banho",
+    "2": "Escovação",
+    "3": "Vestir-se",
+
+    "19": "Café da Manhã",
+    "4": "Almoço",
+    "5": "Jantar",
+    "6": "Lanche",
+
+    "7": "Televisão",
+    "8": "Atividade Física",
+    "9": "Jogos",
+    "10": "Atividade Religiosa",
+    "11": "Leitura",
+
+    "12": "Cozinhar",
+    "13": "ADM Remédios",
+    "14": "ADM Contas",
+    "15": "Estudo",
+
+    "16": "Terapias",
+    "17": "Banheiro",
+    "20": "Cochilos",
+
+    "21": "Conversa",
+
+    "18": "Outros"
+  },
+  "categoria":[
+    {
+      "titulo": "Cuidados Pessoais",
+      "tasks":[1,2,3]
+    },
+    {
+      "titulo": "Alimentação",
+      "tasks":[19,4,5,6]
+    },
+    {
+      "titulo": "Lazer",
+      "tasks":[7,8,9,10,11,21]
+    },
+    {
+      "titulo": "Instrumentais",
+      "tasks":[12,13,14,15]
+    },
+    {
+      "titulo": "Outros",
+      "tasks":[16,17,18,20]
+    }
+  ]
+}

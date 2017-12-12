@@ -1,0 +1,138 @@
+{
+  "meta":{
+    "nome": "João Vega",
+    "idade": 75
+  },
+  "tasks":[
+    {
+      "task": 1,
+      "inicio": "09:00",
+      "duracao": 20,
+      "local": 2,
+      "companhia": 0,
+      "independencia": 2,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 2,
+      "inicio": "08:20",
+      "duracao": 10,
+      "local": 2,
+      "companhia": 0,
+      "independencia": 2,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 3,
+      "inicio": "09:30",
+      "duracao": 10,
+      "local": 3,
+      "companhia": 0,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 19,
+      "inicio": "08:30",
+      "duracao": 30,
+      "local": 4,
+      "companhia": 0,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 4,
+      "inicio": "12:00",
+      "duracao": 30,
+      "local": 4,
+      "companhia": 0,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 5,
+      "inicio": "18:30",
+      "duracao": 30,
+      "local": 4,
+      "companhia": 0,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 6,
+      "inicio": "15:00",
+      "duracao": 30,
+      "local": 4,
+      "companhia": 0,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 7,
+      "inicio": "9:45",
+      "duracao": 135,
+      "local": 4,
+      "companhia": 0,
+      "independencia": 6,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 7,
+      "inicio": "13:00",
+      "duracao": 120,
+      "local": 4,
+      "companhia": 0,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 0
+    },
+    {
+      "task": 7,
+      "inicio": "19:00",
+      "duracao": 120,
+      "local": 4,
+      "companhia": 0,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 9,
+      "inicio": "15:30",
+      "duracao": 120,
+      "local": 4,
+      "companhia": 0,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 16,
+      "inicio": "17:30",
+      "duracao": 45,
+      "local": 4,
+      "companhia": 7,
+      "independencia": 4,
+      "simultanea": "",
+      "classe": 1
+    },
+    {
+      "task": 20,
+      "inicio": "12:30",
+      "duracao": 30,
+      "local": 3,
+      "companhia": "",
+      "independencia": 6,
+      "simultanea": "",
+      "classe": 1
+    }
+  ]
+}
